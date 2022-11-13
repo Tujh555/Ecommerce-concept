@@ -4,4 +4,31 @@
     <string name="select_category_text">Select category</string>
     <string name="view_all_text">view all</string>
     <string name="search_hint_text">Search</string>
+    <string name="buy_now_text">Buy now!</string>
+    <string name="new_text">New</string>
+    <string name="hot_sales_text">Hot sales</string>
+    <string name="see_more_text">see more</string>
+    <string name="best_seller_text">Best Seller</string>
+    <string name="strikethrough_price"><strike>$%s</strike></string>
+    <string name="price">$%s</string>
+    <string name="done_button_text">Done</string>
+    <string name="filter_options_text">Filter options</string>
+    <string name="brand_text">Brand</string>
+    <string name="price_text">Price</string>
+    <string name="size_text">Size</string>
+    <string name="all_sizes_text">All sizes</string>
+    <string name="price_spinner_text">Doesn\'t matter</string>
+    <string name="brand_spinner_text">Any</string>
+    <string name="product_details_text">Product deatils</string>
+
+    <string-array name="planets_array">
+        <item>Mercury</item>
+        <item>Venus</item>
+        <item>Earth</item>
+        <item>Mars</item>
+        <item>Jupiter</item>
+        <item>Saturn</item>
+        <item>Uranus</item>
+        <item>Neptune</item>
+    </string-array>
 </resources>

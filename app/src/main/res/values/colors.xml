@@ -12,4 +12,7 @@
     <color name="orange_main">#FF6E4E</color>
     <color name="gray">#F5F5F5</color>
     <color name="product_categories_icons_color">#B3B3C3</color>
+    <color name="dark_gray">#101010</color>
+    <color name="old_price_color">#CCCCCC</color>
+    <color name="light_gray">#DCDCDC</color>
 </resources>

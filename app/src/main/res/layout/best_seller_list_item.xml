@@ -1,0 +1,93 @@
+<?xml version="1.0" encoding="utf-8"?>
+<com.google.android.material.card.MaterialCardView xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="181dp"
+    android:layout_height="227dp"
+    android:layout_marginEnd="14dp"
+    android:layout_marginBottom="12dp"
+    app:cardCornerRadius="10dp">
+
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
+
+        <ImageView
+            android:id="@+id/iv_image"
+            android:layout_width="match_parent"
+            android:layout_height="177dp"
+            app:layout_constraintTop_toTopOf="parent"
+            tools:src="@drawable/small_test" />
+
+        <androidx.appcompat.widget.AppCompatTextView
+            android:id="@+id/tv_actual_price"
+            android:layout_width="51dp"
+            android:layout_height="22dp"
+            android:layout_marginStart="21dp"
+            android:layout_marginTop="2dp"
+            android:textAppearance="@style/TextAppearance.AppCompat.DefaultTextStyle"
+            android:textSize="16sp"
+            app:autoSizeMaxTextSize="16sp"
+            app:autoSizeMinTextSize="10sp"
+            app:autoSizeStepGranularity="1sp"
+            app:autoSizeTextType="uniform"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/iv_image"
+            tools:text="$1,047" />
+
+        <androidx.appcompat.widget.AppCompatTextView
+            android:id="@+id/tv_old_price"
+            android:layout_width="43dp"
+            android:layout_height="15dp"
+            android:layout_marginStart="7dp"
+            android:layout_marginTop="2dp"
+            android:textAppearance="@style/OldPriceStyle"
+            android:textSize="10sp"
+            app:autoSizeMaxTextSize="10sp"
+            app:autoSizeMinTextSize="4sp"
+            app:autoSizeStepGranularity="1sp"
+            app:autoSizeTextType="uniform"
+            app:layout_constraintBottom_toBottomOf="@id/tv_actual_price"
+            app:layout_constraintStart_toEndOf="@id/tv_actual_price"
+            tools:ignore="SmallSp"
+            tools:text="1,500" />
+
+        <androidx.appcompat.widget.AppCompatTextView
+            android:id="@+id/tv_title"
+            android:layout_width="139dp"
+            android:layout_height="20dp"
+            android:layout_marginTop="5dp"
+            android:textAppearance="@style/TextAppearance.AppCompat.Thin"
+            android:textColor="@color/dark_blue_main"
+            android:textSize="10sp"
+            app:autoSizeMaxTextSize="10sp"
+            app:autoSizeMinTextSize="4sp"
+            app:autoSizeStepGranularity="1sp"
+            app:autoSizeTextType="uniform"
+            app:layout_constraintStart_toStartOf="@id/tv_actual_price"
+            app:layout_constraintTop_toBottomOf="@id/tv_actual_price"
+            tools:ignore="SmallSp"
+            tools:text="Samsung Galaxy s20 Ultra" />
+
+        <com.google.android.material.card.MaterialCardView
+            android:layout_width="25dp"
+            android:layout_height="25dp"
+            android:layout_marginTop="6dp"
+            android:layout_marginEnd="15dp"
+            android:elevation="20dp"
+            app:cardCornerRadius="100dp"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintTop_toTopOf="parent">
+
+            <ImageView
+                android:id="@+id/iv_is_in_favorites"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:padding="7dp"
+                android:src="@drawable/ic_favorites_orange" />
+
+        </com.google.android.material.card.MaterialCardView>
+
+    </androidx.constraintlayout.widget.ConstraintLayout>
+
+</com.google.android.material.card.MaterialCardView>
