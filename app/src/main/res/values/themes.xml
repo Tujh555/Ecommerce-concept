@@ -2,7 +2,7 @@
     <!-- Base application theme. -->
     <style name="Theme.EcommerceConcept" parent="Theme.MaterialComponents.DayNight.NoActionBar">
         <!-- Primary brand color. -->
-        <item name="colorPrimary">@color/purple_500</item>
+        <item name="colorPrimary">@color/orange_main</item>
         <item name="colorPrimaryVariant">@color/purple_700</item>
         <item name="colorOnPrimary">@color/white</item>
         <!-- Secondary brand color. -->
@@ -62,10 +62,7 @@
         <item name="boxCornerRadiusTopEnd">5dp</item>
         <item name="boxCornerRadiusTopStart">5dp</item>
         <item name="endIconTint">@color/light_gray</item>
-        <item name="background">@drawable/spinner_background</item>
-        <item name="boxStrokeColor">@color/light_gray</item>
         <item name="boxStrokeWidth">1px</item>
-        <item name="boxStrokeWidthFocused">1px</item>
         <item name="endIconDrawable">@drawable/ic_down_arrow_triangle</item>
         <item name="endIconMode">dropdown_menu</item>
     </style>
@@ -83,5 +80,20 @@
         <item name="android:layout_width">@dimen/small_button_width</item>
         <item name="android:layout_height">@dimen/small_button_width</item>
         <item name="cardCornerRadius">10dp</item>
+    </style>
+
+    <style name="ProductHardwareItemsText">
+        <item name="android:maxWidth">70dp</item>
+        <item name="android:textAppearance">@style/TextAppearance.AppCompat.Thin</item>
+        <item name="android:textColor">@color/product_hardware_images_color</item>
+        <item name="android:textSize">11sp</item>
+        <item name="android:textAlignment">center</item>
+    </style>
+
+    <style name="LargeButtonStyle">
+        <item name="android:layout_width">@dimen/large_button_width</item>
+        <item name="android:layout_height">wrap_content</item>
+        <item name="cardCornerRadius">10dp</item>
+        <item name="cardBackgroundColor">@color/orange_main</item>
     </style>
 </resources>

@@ -15,4 +15,11 @@
     <color name="dark_gray">#101010</color>
     <color name="old_price_color">#CCCCCC</color>
     <color name="light_gray">#DCDCDC</color>
+    <color name="product_hardware_images_color">#B7B7B7</color>
+    <color name="tick_color">#FAFAFA</color>
+    <color name="capacity_checked">#FFFFFF</color>
+    <color name="capacity_unchecked">#8D8D8D</color>
+    <color name="change_product_counts_panel_color">#282843</color>
+    <color name="bold_divider_color">#40FFFFFF</color>
+    <color name="thin_divider_color">#33FFFFFF</color>
 </resources>

@@ -11,7 +11,7 @@
         layout="@layout/go_back_button"
         android:layout_width="@dimen/small_button_width"
         android:layout_height="wrap_content"
-        android:layout_marginTop="20dp"
+        android:layout_marginTop="@dimen/top_margin_for_top_buttons"
         app:layout_constraintEnd_toStartOf="@id/tv_title"
         app:layout_constraintHorizontal_chainStyle="spread"
         app:layout_constraintStart_toStartOf="parent"
@@ -44,62 +44,79 @@
 
     </com.google.android.material.card.MaterialCardView>
 
-    <com.google.android.material.card.MaterialCardView
+    <androidx.constraintlayout.widget.ConstraintLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        app:cardCornerRadius="30dp"
+        android:elevation="20dp"
+        android:background="@drawable/two_rounded_corners_background"
         app:layout_constraintBottom_toBottomOf="parent">
 
-        <androidx.constraintlayout.widget.ConstraintLayout
+        <androidx.appcompat.widget.AppCompatTextView
+            android:id="@+id/tv_product_name"
+            android:layout_width="0dp"
+            android:layout_height="30dp"
+            android:layout_marginStart="38dp"
+            android:layout_marginTop="28dp"
+            android:layout_marginEnd="5dp"
+            android:textAppearance="@style/RegularText"
+            android:textSize="24sp"
+            app:autoSizeMaxTextSize="24sp"
+            app:autoSizeMinTextSize="10sp"
+            app:autoSizeStepGranularity="1sp"
+            app:autoSizeTextType="uniform"
+            app:layout_constraintEnd_toStartOf="@id/cv_is_in_favorites"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent"
+            tools:text="Galaxy Note 20 Ultra" />
+
+        <com.google.android.material.card.MaterialCardView
+            android:id="@+id/cv_is_in_favorites"
+            style="@style/SmallButton"
+            android:layout_marginEnd="37dp"
+            android:backgroundTint="@color/dark_blue_main"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintTop_toTopOf="@id/tv_product_name">
+
+            <ImageView
+                android:id="@+id/iv_is_in_favorites"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:padding="10dp"
+                android:src="@drawable/ic_favorites_white" />
+
+        </com.google.android.material.card.MaterialCardView>
+
+        <androidx.appcompat.widget.AppCompatRatingBar
+            android:id="@+id/rating_bar"
+            style="@style/Widget.AppCompat.RatingBar.Small"
+            android:layout_width="wrap_content"
+            android:numStars="5"
+            android:layout_height="wrap_content"
+            app:layout_constraintStart_toStartOf="@id/tv_product_name"
+            app:layout_constraintTop_toBottomOf="@id/tv_product_name"/>
+
+        <com.google.android.material.tabs.TabLayout
+            android:id="@+id/tl_product_actions"
             android:layout_width="match_parent"
-            android:layout_height="match_parent">
+            android:layout_height="wrap_content"
+            android:layout_marginTop="32dp"
+            app:tabIndicatorColor="@color/orange_main"
+            app:tabIndicatorHeight="10dp"
+            app:layout_constraintTop_toBottomOf="@id/rating_bar"/>
 
-            <androidx.appcompat.widget.AppCompatTextView
-                android:id="@+id/tv_product_name"
-                android:layout_width="0dp"
-                android:layout_height="30dp"
-                android:layout_marginStart="38dp"
-                android:layout_marginTop="28dp"
-                android:layout_marginEnd="5dp"
-                android:textAppearance="@style/RegularText"
-                android:textSize="24sp"
-                app:autoSizeMaxTextSize="24sp"
-                app:autoSizeMinTextSize="10sp"
-                app:autoSizeStepGranularity="1sp"
-                app:autoSizeTextType="uniform"
-                app:layout_constraintEnd_toStartOf="@id/cv_is_in_favorites"
-                app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toTopOf="parent"
-                tools:text="Galaxy Note 20 Ultra" />
+        <include
+            android:id="@+id/shop_layout"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            layout="@layout/shop_layout"
+            app:layout_constraintBottom_toBottomOf="parent"/>
 
-            <com.google.android.material.card.MaterialCardView
-                android:id="@+id/cv_is_in_favorites"
-                style="@style/SmallButton"
-                android:layout_marginEnd="37dp"
-                android:backgroundTint="@color/dark_blue_main"
-                app:layout_constraintEnd_toEndOf="parent"
-                app:layout_constraintTop_toTopOf="@id/tv_product_name">
+        <androidx.viewpager2.widget.ViewPager2
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            app:layout_constraintTop_toBottomOf="@id/tl_product_actions"
+            android:layout_marginTop="33dp" />
 
-                <ImageView
-                    android:id="@+id/iv_is_in_favorites"
-                    android:layout_width="match_parent"
-                    android:layout_height="match_parent"
-                    android:padding="10dp"
-                    android:src="@drawable/ic_favorites_white" />
-
-            </com.google.android.material.card.MaterialCardView>
-
-            <androidx.appcompat.widget.AppCompatRatingBar
-                android:id="@+id/rating_bar"
-                style="@style/Widget.AppCompat.RatingBar.Small"
-                android:layout_width="wrap_content"
-                android:numStars="5"
-                android:layout_height="wrap_content"
-                app:layout_constraintStart_toStartOf="@id/tv_product_name"
-                app:layout_constraintTop_toBottomOf="@id/tv_product_name"/>
-
-        </androidx.constraintlayout.widget.ConstraintLayout>
-
-    </com.google.android.material.card.MaterialCardView>
+    </androidx.constraintlayout.widget.ConstraintLayout>
 
 </androidx.constraintlayout.widget.ConstraintLayout>

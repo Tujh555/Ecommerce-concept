@@ -29,9 +29,10 @@
 
     <TextView
         style="@style/CategoryItemsText"
-        android:layout_width="wrap_content"
+        android:layout_width="0dp"
         android:layout_height="wrap_content"
         android:layout_marginTop="7dp"
+        android:textAlignment="center"
         android:textColor="@color/orange_main"
         app:layout_constraintEnd_toEndOf="@id/cv_circle"
         app:layout_constraintStart_toStartOf="@id/cv_circle"

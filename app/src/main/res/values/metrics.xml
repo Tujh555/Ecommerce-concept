@@ -2,4 +2,7 @@
 <resources>
     <dimen name="default_corner_radius">15dp</dimen>
     <dimen name="small_button_width">37dp</dimen>
+    <dimen name="selectable_components_bottom_margin">18.25dp</dimen>
+    <dimen name="top_margin_for_top_buttons">24dp</dimen>
+    <dimen name="large_button_width">355dp</dimen>
 </resources>
