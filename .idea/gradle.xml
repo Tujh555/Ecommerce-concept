@@ -10,9 +10,15 @@
         <option name="modules">
           <set>
             <option value="$PROJECT_DIR$" />
-            <option value="$PROJECT_DIR$/apiModule" />
             <option value="$PROJECT_DIR$/app" />
             <option value="$PROJECT_DIR$/core_network" />
+            <option value="$PROJECT_DIR$/core_ui" />
+            <option value="$PROJECT_DIR$/feature_cart" />
+            <option value="$PROJECT_DIR$/feature_home_page" />
+            <option value="$PROJECT_DIR$/feature_phone_details" />
+            <option value="$PROJECT_DIR$/feature_phone_filter" />
+            <option value="$PROJECT_DIR$/feature_phones" />
+            <option value="$PROJECT_DIR$/feature_splash" />
           </set>
         </option>
       </GradleProjectSettings>

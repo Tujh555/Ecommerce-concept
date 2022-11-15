@@ -14,5 +14,11 @@ dependencyResolutionManagement {
 }
 rootProject.name = "Ecommerce concept"
 include ':app'
-include ':apiModule'
 include ':core_network'
+include ':core_ui'
+include ':feature_cart'
+include ':feature_splash'
+include ':feature_phone_details'
+include ':feature_home_page'
+include ':feature_phones'
+include ':feature_phone_filter'

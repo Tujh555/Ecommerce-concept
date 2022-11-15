@@ -1,0 +1,9 @@
+<resources>
+    <string name="buy_now_text">Buy now!</string>
+    <string name="new_text">New</string>
+    <string name="hot_sales_text">Hot sales</string>
+    <string name="see_more_text">see more</string>
+    <string name="best_seller_text">Best Seller</string>
+    <string name="strikethrough_price"><strike>$%s</strike></string>
+    <string name="price">$%s</string>
+</resources>

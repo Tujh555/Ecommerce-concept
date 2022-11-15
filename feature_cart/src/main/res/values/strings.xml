@@ -1,0 +1,8 @@
+<resources>
+    <string name="add_address_text">Add address</string>
+    <string name="checkout_text">Checkout</string>
+    <string name="total_text">Total</string>
+    <string name="delivery_text">Delivery</string>
+    <string name="total_sum_text">$%s us</string>
+    <string name="my_cart_title_text">My cart</string>
+</resources>

@@ -10,11 +10,13 @@ import android.widget.CheckBox
 import android.widget.Toast
 import androidx.appcompat.app.AppCompatActivity
 import androidx.recyclerview.widget.RecyclerView
+import ru.effectivemobile.ecommerceconcept.databinding.ActivityMainBinding
 import ru.effectivemobile.ecommerceconcept.databinding.ProductDetailsFragmentBinding
+import ru.effectivemobile.ecommerceconcept.feature_cart.CartFragment
 
 class MainActivity : AppCompatActivity() {
     private val binding by lazy {
-        ProductDetailsFragmentBinding.inflate(layoutInflater)
+        ActivityMainBinding.inflate(layoutInflater)
     }
     private val data = listOf(
         MobileData(1, "Iphone 12", "Lsdgorem ipsum dolem", "https://img.ibxk.com.br/2020/09/23/23104013057475.jpg?w=1120&h=420&mode=crop&scale=both"),
@@ -27,6 +29,12 @@ class MainActivity : AppCompatActivity() {
         super.onCreate(savedInstanceState)
         setContentView(binding.root)
 
+        val fr = CartFragment()
+
+        supportFragmentManager.beginTransaction()
+            .replace(R.id.container, fr)
+            .commit()
+
 //        adapter.addColor(Color.MAGENTA)
 //        adapter.addColor(Color.RED)
 //        adapter.addColor(Color.parseColor("#772D03"))
@@ -35,14 +43,14 @@ class MainActivity : AppCompatActivity() {
 //        adapter.addColor(Color.BLUE)
 //        adapter.addColor(Color.MAGENTA)
 
-        val adapter = ColorsAdapter().apply {
-            list.add(Color.MAGENTA)
-            list.add(Color.parseColor("#772D03"))
-            list.add(Color.parseColor("#010035"))
-            list.add(Color.BLACK)
-        }
-
-        binding.shopLayout.rvColors.adapter = adapter
+//        val adapter = ColorsAdapter().apply {
+//            list.add(Color.MAGENTA)
+//            list.add(Color.parseColor("#772D03"))
+//            list.add(Color.parseColor("#010035"))
+//            list.add(Color.BLACK)
+//        }
+//
+//        binding.shopLayout.rvColors.adapter = adapter
     }
 }
 
