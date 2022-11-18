@@ -1,8 +1,14 @@
+<?xml version="1.0" encoding="utf-8"?>
 <resources>
     <string name="add_address_text">Add address</string>
     <string name="checkout_text">Checkout</string>
     <string name="total_text">Total</string>
     <string name="delivery_text">Delivery</string>
     <string name="total_sum_text">$%s us</string>
+    <string name="price_text">$%.2f</string>
     <string name="my_cart_title_text">My cart</string>
+    <string name="something_went_wrong_text">Something went wrong…</string>
+    <string name="idle_state_text">Downloading will begin soon</string>
+
+    <item name="action_splash" type="id"/>
 </resources>

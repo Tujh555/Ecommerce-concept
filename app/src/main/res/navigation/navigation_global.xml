@@ -1,0 +1,35 @@
+<?xml version="1.0" encoding="utf-8"?>
+<navigation xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:id="@+id/navigation_global"
+    app:startDestination="@id/cartFragment">
+
+    <fragment
+        android:id="@+id/splashFragment"
+        android:name="ru.effectivemobile.ecommerceconcept.mylibrary.SplashFragment"
+        android:label="SplashFragment">
+
+        <action
+            android:id="@id/action_splashFragment_to_homePageFragment"
+            app:destination="@id/cartFragment"
+            app:popUpTo="@id/navigation_global"/>
+
+    </fragment>
+
+    <fragment
+        android:id="@+id/homePageFragment"
+        android:name="ru.effectivemobile.ecommerceconcept.feature_home_page.HomePageFragment"
+        android:label="HomePageFragment"
+        />
+
+    <fragment
+        android:id="@+id/cartFragment"
+        android:name="ru.effectivemobile.ecommerceconcept.feature_cart_impl.presentation.CartFragment"
+        android:label="CartFragment">
+
+        <action
+            android:id="@id/action_splash"
+            app:destination="@id/splashFragment"/>
+
+    </fragment>
+</navigation>

@@ -5,7 +5,8 @@
     android:layout_width="wrap_content"
     android:layout_height="wrap_content"
     android:layout_marginBottom="45dp"
-    tools:background="@color/dark_blue_main">
+    tools:background="@color/dark_blue_main"
+    tools:theme="@style/Theme.EcommerceConcept">
 
     <androidx.cardview.widget.CardView
         android:id="@+id/cv_image_container"
@@ -43,6 +44,7 @@
         tools:text="Galaxy Note 20 Ultra mega super cool the best" />
 
     <androidx.appcompat.widget.AppCompatTextView
+        android:id="@+id/tv_price"
         android:layout_width="153dp"
         android:layout_height="28dp"
         android:textAppearance="@style/RegularText"
@@ -85,6 +87,7 @@
                 app:layout_constraintTop_toTopOf="parent" />
 
             <androidx.appcompat.widget.AppCompatTextView
+                android:id="@+id/tv_count_in_cart"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_marginStart="8dp"

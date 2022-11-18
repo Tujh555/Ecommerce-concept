@@ -1,0 +1,3 @@
+package ru.effectivemobile.ecommerceconcept.module_injector
+
+interface BaseApi
