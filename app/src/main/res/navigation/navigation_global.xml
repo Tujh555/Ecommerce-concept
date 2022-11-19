@@ -2,7 +2,9 @@
 <navigation xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     android:id="@+id/navigation_global"
-    app:startDestination="@id/cartFragment">
+    app:startDestination="@id/splashFragment">
+
+    <include app:graph="@navigation/navigation_home_page"/>
 
     <fragment
         android:id="@+id/splashFragment"
@@ -11,25 +13,24 @@
 
         <action
             android:id="@id/action_splashFragment_to_homePageFragment"
-            app:destination="@id/cartFragment"
+            app:destination="@id/homePageFragment"
             app:popUpTo="@id/navigation_global"/>
 
     </fragment>
 
     <fragment
         android:id="@+id/homePageFragment"
-        android:name="ru.effectivemobile.ecommerceconcept.feature_home_page.HomePageFragment"
-        android:label="HomePageFragment"
-        />
+        android:name="ru.effectivemobile.ecommerceconcept.feature_home_page.presentation.HomePageFragment"
+        android:label="HomePageFragment"/>
+
+    <fragment
+        android:id="@+id/phonesFragment"
+        android:name="ru.effectivemobile.ecommerceconcept.feature_phones.impl.presentation.PhonesFragment"
+        android:label="PhonesFragment"/>
 
     <fragment
         android:id="@+id/cartFragment"
         android:name="ru.effectivemobile.ecommerceconcept.feature_cart_impl.presentation.CartFragment"
         android:label="CartFragment">
-
-        <action
-            android:id="@id/action_splash"
-            app:destination="@id/splashFragment"/>
-
     </fragment>
 </navigation>

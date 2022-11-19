@@ -100,4 +100,18 @@
     <style name="ProgressBarDefault">
         <item name="android:indeterminateTint">@color/orange_main</item>
     </style>
+
+    <style name="UnselectedCardCategory">
+        <item name="cardElevation">10dp</item>
+        <item name="backgroundTint">@color/white</item>
+    </style>
+
+    <style name="SelectedCardCategory">
+        <item name="cardElevation">0dp</item>
+        <item name="backgroundTint">@color/orange_main</item>
+    </style>
+
+    <style name="SelectedCategoryText" parent="CategoryItemsText">
+        <item name="android:textColor">@color/orange_main</item>
+    </style>
 </resources>

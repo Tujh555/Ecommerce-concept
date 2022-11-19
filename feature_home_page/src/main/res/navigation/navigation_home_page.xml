@@ -1,0 +1,25 @@
+<?xml version="1.0" encoding="utf-8"?>
+<navigation xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:id="@+id/navigation_home_page"
+    app:startDestination="@id/phonesFragment">
+
+    <fragment
+        android:id="@+id/phonesFragment"
+        android:name="ru.effectivemobile.ecommerceconcept.feature_phones.impl.presentation.PhonesFragment"
+        android:label="PhonesFragment"/>
+
+    <fragment
+        android:id="@+id/notImplementedFragment"
+        android:name="ru.effectivemobile.ecommerceconcept.feature_home_page.presentation.NotImplementedFragment"
+        android:label="NotImplementedFragment"/>
+
+    <action
+        android:id="@+id/action_to_phonesFragment"
+        app:destination="@id/phonesFragment"/>
+
+    <action
+        android:id="@+id/action_to_notImplementedFragment"
+        app:destination="@id/notImplementedFragment"/>
+
+</navigation>

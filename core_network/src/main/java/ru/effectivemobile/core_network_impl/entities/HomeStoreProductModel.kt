@@ -5,6 +5,9 @@ import com.google.gson.annotations.SerializedName
 data class HomeStoreProductModel(
     val id: Int,
 
+    @SerializedName("is_new")
+    val isNew: Boolean = false,
+
     val title: String,
 
     val subtitle: String,

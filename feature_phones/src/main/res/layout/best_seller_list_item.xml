@@ -6,7 +6,8 @@
     android:layout_height="227dp"
     android:layout_marginEnd="14dp"
     android:layout_marginBottom="12dp"
-    app:cardCornerRadius="10dp">
+    app:cardCornerRadius="10dp"
+    tools:theme="@style/Theme.EcommerceConcept">
 
     <androidx.constraintlayout.widget.ConstraintLayout
         android:layout_width="match_parent"
@@ -27,6 +28,7 @@
             android:layout_marginTop="2dp"
             android:textAppearance="@style/TextAppearance.AppCompat.DefaultTextStyle"
             android:textSize="16sp"
+            android:textAlignment="textEnd"
             app:autoSizeMaxTextSize="16sp"
             app:autoSizeMinTextSize="10sp"
             app:autoSizeStepGranularity="1sp"
@@ -84,7 +86,7 @@
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
                 android:padding="7dp"
-                android:src="@drawable/ic_favorites_orange" />
+                android:src="@drawable/favorites_background" />
 
         </com.google.android.material.card.MaterialCardView>
 

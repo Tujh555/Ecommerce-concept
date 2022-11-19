@@ -1,24 +1,17 @@
 package ru.effectivemobile.ecommerceconcept.di
 
 import android.app.Application
-import android.util.Log
-import dagger.BindsInstance
 import dagger.Component
 import dagger.Module
 import dagger.Provides
-import kotlinx.coroutines.delay
 import ru.effectivemobile.core_network_api.StoreService
-import ru.effectivemobile.core_network_impl.CoreNetworkComponent
 import ru.effectivemobile.core_network_impl.NetworkApiProvider
-import ru.effectivemobile.core_network_impl.entities.BasketProductModel
-import ru.effectivemobile.core_network_impl.entities.CartModel
-import ru.effectivemobile.core_network_impl.entities.DetailedProductModel
-import ru.effectivemobile.core_network_impl.entities.HomePageDataModel
 import ru.effectivemobile.ecommerceconcept.MainActivity
 import ru.effectivemobile.ecommerceconcept.di.scopes.AppScope
 import ru.effectivemobile.ecommerceconcept.feature_cart_api.CartFeatureApi
 import ru.effectivemobile.ecommerceconcept.feature_cart_api.CartFeatureDependencies
 import ru.effectivemobile.ecommerceconcept.feature_cart_impl.di.CartFeatureComponentHolder
+import ru.effectivemobile.ecommerceconcept.feature_phones.api.FeaturePhonesDependencies
 
 @Component(modules = [AppModule::class])
 @AppScope
@@ -37,10 +30,19 @@ interface AppComponent {
 class AppModule {
     @AppScope
     @Provides
-    fun provideFeatureCartDependencies(): CartFeatureDependencies {
+    fun provideFeatureCartDependencies(service: StoreService): CartFeatureDependencies {
         return object : CartFeatureDependencies {
             override val storeService: StoreService
-                get() = NetworkApiProvider.get().service
+                get() = service
+        }
+    }
+
+    @AppScope
+    @Provides
+    fun provideFeaturePhonesDependencis(service: StoreService): FeaturePhonesDependencies {
+        return object : FeaturePhonesDependencies {
+            override val service: StoreService
+                get() = service
         }
     }
 
@@ -49,4 +51,8 @@ class AppModule {
         CartFeatureComponentHolder.init(dependencies)
         return CartFeatureComponentHolder.get()
     }
+
+    @Provides
+    @AppScope
+    fun provideStoreService(): StoreService = NetworkApiProvider.get().service
 }

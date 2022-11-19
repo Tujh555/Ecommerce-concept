@@ -5,8 +5,6 @@ import android.os.Handler
 import android.os.Looper
 import android.view.View
 import androidx.fragment.app.Fragment
-import by.kirich1409.viewbindingdelegate.viewBinding
-import ru.effectivemobile.ecommerceconcept.mylibrary.databinding.FragmentSplashBinding
 import ru.effectivemobile.ecommerceconcept.navigation.navigate
 
 internal class SplashFragment : Fragment(R.layout.fragment_splash) {
@@ -16,10 +14,11 @@ internal class SplashFragment : Fragment(R.layout.fragment_splash) {
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
+
         Handler(Looper.getMainLooper()).postDelayed(transitionToNextFragment , DELAY_MILLISECONDS)
     }
 
     private companion object {
-        const val DELAY_MILLISECONDS = 4000L
+        const val DELAY_MILLISECONDS = 2000L
     }
 }

@@ -40,10 +40,10 @@ internal class CartItemsAdapter @Inject constructor(
 
                 ivMinus.setOnClickListener {
                     val product = getItem(bindingAdapterPosition)
+
+                    if (product.countInCart > 0) onItemMinus?.invoke(product)
+
                     product.countInCart -= 1
-
-                    onItemMinus?.invoke(product)
-
                     this@CartItemsAdapter.notifyItemChanged(
                         bindingAdapterPosition
                     )

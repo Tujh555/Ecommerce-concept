@@ -1,28 +1,21 @@
 package ru.effectivemobile.ecommerceconcept.feature_cart_impl.presentation
 
-import android.content.Context
 import android.os.Bundle
-import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.widget.Toast
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.viewModels
-import androidx.lifecycle.Lifecycle
 import androidx.lifecycle.ViewModelProvider
 import androidx.lifecycle.lifecycleScope
-import androidx.lifecycle.repeatOnLifecycle
+import androidx.recyclerview.widget.SimpleItemAnimator
 import by.kirich1409.viewbindingdelegate.viewBinding
-import kotlinx.coroutines.flow.collectLatest
-import kotlinx.coroutines.launch
 import ru.effectivemobile.ecommerceconcept.feature_cart.R
 import ru.effectivemobile.ecommerceconcept.feature_cart.databinding.FragmentCartBinding
-import ru.effectivemobile.ecommerceconcept.feature_cart_impl.TAG
 import ru.effectivemobile.ecommerceconcept.feature_cart_impl.data.Response
 import ru.effectivemobile.ecommerceconcept.feature_cart_impl.di.CartDependencyProvider
 import ru.effectivemobile.ecommerceconcept.feature_cart_impl.di.CartFeatureComponentHolder
-import ru.effectivemobile.ecommerceconcept.navigation.navigate
 import javax.inject.Inject
 
 internal class CartFragment : Fragment(R.layout.fragment_cart) {
@@ -37,23 +30,11 @@ internal class CartFragment : Fragment(R.layout.fragment_cart) {
         viewModelsFactory
     }
 
-    override fun onAttach(context: Context) {
-        super.onAttach(context)
-        Log.d("MyLogs", "Fragmetn on attach")
-    }
-
-    override fun onCreate(savedInstanceState: Bundle?) {
-        super.onCreate(savedInstanceState)
-        Log.d("MyLogs", "Fragmetn on create")
-    }
-
     override fun onCreateView(
         inflater: LayoutInflater,
         container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View? {
-        Log.d("MyLogs", "Fragmetn on create view")
-
         CartFeatureComponentHolder.init(CartDependencyProvider.dependencies)
         CartFeatureComponentHolder.featureComponent.inject(this)
 
@@ -62,7 +43,6 @@ internal class CartFragment : Fragment(R.layout.fragment_cart) {
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
-        Log.d("MyLogs", "Fragmetn on view created")
 
         viewModel.loadUserCart()
         initUI()
@@ -76,11 +56,8 @@ internal class CartFragment : Fragment(R.layout.fragment_cart) {
             onItemMinus = viewModel::deleteItem
         }
 
+        (binding.rvCartProducts.itemAnimator as? SimpleItemAnimator)?.supportsChangeAnimations = false
         binding.rvCartProducts.adapter = adapter
-
-        binding.goBackButton.setOnClickListener {
-            navigate(R.id.action_splash)
-        }
     }
 
     private fun observeFlows() {

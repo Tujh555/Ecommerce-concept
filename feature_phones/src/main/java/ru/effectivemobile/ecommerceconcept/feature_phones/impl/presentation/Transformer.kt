@@ -1,4 +1,4 @@
-package ru.effectivemobile.ecommerceconcept
+package ru.effectivemobile.ecommerceconcept.feature_phones.impl.presentation
 
 import android.view.View
 import androidx.viewpager2.widget.ViewPager2

@@ -1,0 +1,21 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string-array name="home_page_categories">
+        <item>Phones</item>
+        <item>Computer</item>
+        <item>Health</item>
+        <item>Books</item>
+    </string-array>
+    <array name="categories_pictures_selected">
+        <item>@drawable/ic_phone_selected</item>
+        <item>@drawable/ic_computer_selected</item>
+        <item>@drawable/ic_health_selected</item>
+        <item>@drawable/ic_books_selected</item>
+    </array>
+    <array name="categories_pictures_unselected">
+        <item>@drawable/ic_phone_unselected</item>
+        <item>@drawable/ic_computer_unselected</item>
+        <item>@drawable/ic_health_unselected</item>
+        <item>@drawable/ic_books_unselected</item>
+    </array>
+</resources>
