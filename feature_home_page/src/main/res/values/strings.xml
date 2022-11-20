@@ -4,7 +4,6 @@
     <string name="select_category_text">Select category</string>
     <string name="view_all_text">view all</string>
     <string name="not_implemented_text">There\'s nothing here.</string>
-
     <string name="done_button_text">Done</string>
     <string name="filter_options_text">Filter options</string>
     <string name="brand_text">Brand</string>
@@ -13,11 +12,22 @@
     <string name="price_spinner_text">Doesn\'t matter</string>
     <string name="size_text">Size</string>
     <string name="all_sizes_text">All sizes</string>
+    <string name="price_range">$%1$d - $%2$d</string>
+    <string name="explorer_text">Explorer</string>
+    <string name="cart_text">Cart</string>
+    <string name="favorites_text">Favorites</string>
+    <string name="account_text">Account</string>
 
     <string-array name="phone_brands">
         <item>Samsung</item>
         <item>Xiaomi</item>
         <item>Iphone</item>
         <item>Motorola</item>
+    </string-array>
+    <string-array name="sizes">
+        <item>3.5 to 4.5 inches</item>
+        <item>4.5 to 5.5 inches</item>
+        <item>5.5 to 6.5 inches</item>
+        <item>6.5 to 7.5 inches</item>
     </string-array>
 </resources>

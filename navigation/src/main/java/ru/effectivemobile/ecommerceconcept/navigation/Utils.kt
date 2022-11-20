@@ -12,11 +12,7 @@ import kotlin.reflect.KClass
 const val DATA_KEY = "Data"
 
 fun Fragment.navigate(actionId: Int, hostId: Int? = null, data: Parcelable? = null) {
-    val navController = if (hostId == null) {
-        findNavController()
-    } else {
-        Navigation.findNavController(requireActivity(), hostId)
-    }
+    val navController = getNavController(hostId)
 
     val bundle = Bundle().apply { putParcelable(DATA_KEY, data) }
 
@@ -28,6 +24,18 @@ fun Fragment.navigateWithInfo(navInfo: NavigationInfo, data: Parcelable? = null)
     hostId = navInfo.hostId,
     data
 )
+
+private fun Fragment.getNavController(hostId: Int?) = if (hostId == null) {
+    findNavController()
+} else {
+    Navigation.findNavController(requireActivity(), hostId)
+}
+
+fun Fragment.popUp(hostId: Int? = null) {
+    val controller = getNavController(hostId)
+
+    controller.popBackStack()
+}
 
 inline fun <reified T : Parcelable> Fragment.getNavigationData(): T? {
     return if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.TIRAMISU) {

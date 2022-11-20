@@ -22,6 +22,8 @@ import ru.effectivemobile.ecommerceconcept.feature_phones.impl.presentation.adap
 import ru.effectivemobile.ecommerceconcept.navigation.NavigationInfo
 import ru.effectivemobile.ecommerceconcept.navigation.getNavigationData
 import ru.effectivemobile.ecommerceconcept.navigation.navigateWithInfo
+import java.net.ConnectException
+import java.net.UnknownHostException
 import javax.inject.Inject
 
 internal class PhonesFragment : Fragment(R.layout.fragment_phones) {
@@ -35,9 +37,6 @@ internal class PhonesFragment : Fragment(R.layout.fragment_phones) {
 
     @Inject
     lateinit var bestSellerAdapter: BestSellerAdapter
-
-    @Inject
-    lateinit var cartNavigationInfo: NavigationInfo
 
     private val viewModel by viewModels<PhonesViewModel> {
         viewModelFactory
@@ -71,9 +70,15 @@ internal class PhonesFragment : Fragment(R.layout.fragment_phones) {
             viewModel.phonesData.collectLatest {
                 when (it) {
                     is Response.Failure -> {
-                        Toast.makeText(requireContext(), "Failure", Toast.LENGTH_SHORT).show()
                         binding.tvBestSellerEmpty.visibility = View.VISIBLE
                         binding.tvHotSalesEmpty.visibility = View.VISIBLE
+                        binding.progressBar.visibility = View.INVISIBLE
+
+                        if (it.exception is ConnectException || it.exception is UnknownHostException) {
+                            Toast.makeText(requireContext(), "Check your network connection", Toast.LENGTH_SHORT).show()
+                        } else {
+                            Toast.makeText(requireContext(), "Something went wrong...", Toast.LENGTH_SHORT).show()
+                        }
                     }
                     is Response.Loading -> {
                         binding.progressBar.visibility = View.VISIBLE
@@ -83,13 +88,13 @@ internal class PhonesFragment : Fragment(R.layout.fragment_phones) {
                         if (it.answer.homePageProducts.isNotEmpty()) {
                             hotSalesAdapter.submitList(it.answer.homePageProducts)
                         } else {
-                            binding.tvBestSellerEmpty.visibility = View.VISIBLE
+                            binding.tvHotSalesEmpty.visibility = View.VISIBLE
                         }
 
                         if (it.answer.bestSellerProducts.isNotEmpty()) {
                             bestSellerAdapter.submitList(it.answer.bestSellerProducts)
                         } else {
-                            binding.tvHotSalesEmpty.visibility = View.VISIBLE
+                            binding.tvBestSellerEmpty.visibility = View.VISIBLE
                         }
                     }
                     is Response.Idle -> { }
@@ -104,10 +109,6 @@ internal class PhonesFragment : Fragment(R.layout.fragment_phones) {
             vpHotSales.adapter = hotSalesAdapter
 
             rvBestSeller.adapter = bestSellerAdapter
-
-            binding.tvBestSeller.setOnClickListener {
-                navigateWithInfo(cartNavigationInfo)
-            }
         }
     }
 }

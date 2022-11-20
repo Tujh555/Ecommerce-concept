@@ -4,7 +4,8 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="@color/gray">
+    android:background="@color/gray"
+    tools:theme="@style/Theme.EcommerceConcept">
 
     <com.google.android.material.card.MaterialCardView
         android:id="@+id/go_back_button"

@@ -18,7 +18,7 @@ internal class HomePageFragment : Fragment(R.layout.fragment_home_page), FilterI
     }
     private val categoryClickListener = CategoriesAdapter.OnCategoryClickListener {
         if (it == strings[0]) {
-            HomePageComponentHolder.navigationInfo?.toNavigationInfo()?.let { info ->
+            HomePageComponentHolder.phonesNavigationInfo?.toNavigationInfo()?.let { info ->
                 navigateWithInfo(info)
             }
         } else {
@@ -60,11 +60,29 @@ internal class HomePageFragment : Fragment(R.layout.fragment_home_page), FilterI
             ivFilter.setOnClickListener {
                 FilterDialog().show(childFragmentManager, "")
             }
+
+            bottomNavigation?.setOnItemSelectedListener { menuItem ->
+                when (menuItem.itemId) {
+                    R.id.home -> {
+                        HomePageComponentHolder.phonesNavigationInfo?.let { info ->
+                            navigateWithInfo(info.toNavigationInfo())
+                        }
+                    }
+
+                    R.id.cart -> {
+                        HomePageComponentHolder.cartNavigationInfo?.let { info ->
+                            navigateWithInfo(info.toNavigationInfo())
+                        }
+                    }
+                }
+
+                true
+            }
         }
     }
 
     override fun filter(filterData: PhoneFilterData) {
-        HomePageComponentHolder.navigationInfo?.let { info ->
+        HomePageComponentHolder.phonesNavigationInfo?.let { info ->
             navigateWithInfo(info.toNavigationInfo(), filterData)
         }
     }

@@ -1,6 +1,5 @@
 <?xml version="1.0" encoding="utf-8"?>
-<androidx.constraintlayout.motion.widget.MotionLayout
-    xmlns:android="http://schemas.android.com/apk/res/android"
+<androidx.constraintlayout.motion.widget.MotionLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
@@ -50,8 +49,8 @@
             android:id="@+id/iv_filter"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_marginEnd="33dp"
-
+            android:layout_marginEnd="18dp"
+            android:padding="15dp"
             android:src="@drawable/ic_filter"
             app:layout_constraintBottom_toBottomOf="@id/tv_location"
             app:layout_constraintEnd_toEndOf="parent"
@@ -162,9 +161,20 @@
         android:layout_width="match_parent"
         android:layout_height="0dp"
         app:defaultNavHost="true"
-        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintBottom_toTopOf="@id/bottom_navigation"
         app:layout_constraintTop_toBottomOf="@id/space"
         app:navGraph="@navigation/navigation_home_page"
         tools:layout="@layout/fragment_phones" />
+
+    <com.google.android.material.bottomnavigation.BottomNavigationView
+        android:id="@+id/bottom_navigation"
+        style="@style/Widget.MaterialComponents.BottomNavigationView.Colored"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:backgroundTint="@color/white"
+        app:itemRippleColor="@color/dark_blue_main"
+        android:background="@drawable/bottom_navigation_background"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:menu="@menu/home_page_menu" />
 
 </androidx.constraintlayout.motion.widget.MotionLayout>

@@ -10,6 +10,7 @@ import ru.effectivemobile.ecommerceconcept.MainActivity
 import ru.effectivemobile.ecommerceconcept.di.scopes.AppScope
 import ru.effectivemobile.ecommerceconcept.feature_cart_api.CartFeatureApi
 import ru.effectivemobile.ecommerceconcept.feature_cart_api.CartFeatureDependencies
+import ru.effectivemobile.ecommerceconcept.feature_cart_api.CartNavigationInfo
 import ru.effectivemobile.ecommerceconcept.feature_cart_impl.di.CartDependencyProvider
 import ru.effectivemobile.ecommerceconcept.feature_cart_impl.di.CartFeatureComponentHolder
 import ru.effectivemobile.ecommerceconcept.feature_home_page.presentation.api.HomePageFeatureDependencies
@@ -46,12 +47,10 @@ class AppModule {
 
     @AppScope
     @Provides
-    fun provideFeaturePhonesDependencies(service: StoreService, cartFeatureApi: CartFeatureApi): FeaturePhonesDependencies {
+    fun provideFeaturePhonesDependencies(service: StoreService): FeaturePhonesDependencies {
         return object : FeaturePhonesDependencies {
             override val service: StoreService
                 get() = service
-            override val cartNavigationInfo: NavigationInfo
-                get() = cartFeatureApi.navigationInfo
         }
     }
 
@@ -64,10 +63,12 @@ class AppModule {
 
     @Provides
     @AppScope
-    fun provideFeatureHomePageDependencies(api: FeaturePhonesApi): HomePageFeatureDependencies {
+    fun provideFeatureHomePageDependencies(api: FeaturePhonesApi, cartFeatureApi: CartFeatureApi): HomePageFeatureDependencies {
         return object : HomePageFeatureDependencies {
             override val phonesNavigationInfo: PhonesNavigationInfo
                 get() = api.navigationInfo
+            override val cartNavigationInfo: CartNavigationInfo
+                get() = cartFeatureApi.navigationInfo
         }
     }
 

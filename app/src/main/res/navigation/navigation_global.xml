@@ -31,11 +31,6 @@
     </fragment>
 
     <fragment
-        android:id="@+id/phonesFragment"
-        android:name="ru.effectivemobile.ecommerceconcept.feature_phones.impl.presentation.PhonesFragment"
-        android:label="PhonesFragment"/>
-
-    <fragment
         android:id="@+id/cartFragment"
         android:name="ru.effectivemobile.ecommerceconcept.feature_cart_impl.presentation.CartFragment"
         android:label="CartFragment">

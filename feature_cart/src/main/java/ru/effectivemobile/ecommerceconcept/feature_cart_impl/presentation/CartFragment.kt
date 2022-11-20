@@ -59,6 +59,10 @@ internal class CartFragment : Fragment(R.layout.fragment_cart) {
 
         (binding.rvCartProducts.itemAnimator as? SimpleItemAnimator)?.supportsChangeAnimations = false
         binding.rvCartProducts.adapter = adapter
+
+        binding.goBackButton.setOnClickListener {
+            requireActivity().onBackPressed()
+        }
     }
 
     private fun observeFlows() {
