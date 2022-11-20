@@ -39,8 +39,8 @@ internal class CategoriesAdapter : ListAdapter<Category, RecyclerView.ViewHolder
     override fun onBindViewHolder(holder: RecyclerView.ViewHolder, position: Int) {
         holder.run {
             itemView.setOnClickListener {
-                if (adapterPosition != selectedItemPosition) {
-                    selectedItemPosition = adapterPosition
+                if (bindingAdapterPosition != selectedItemPosition) {
+                    selectedItemPosition = bindingAdapterPosition
 
                     lastSelectedItemPosition = if (lastSelectedItemPosition == -1) {
                         selectedItemPosition

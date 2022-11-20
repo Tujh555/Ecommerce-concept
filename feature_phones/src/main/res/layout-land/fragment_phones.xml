@@ -32,6 +32,18 @@
             app:layout_constraintTop_toTopOf="parent" />
 
         <androidx.appcompat.widget.AppCompatTextView
+            android:id="@+id/tv_hot_sales_empty"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="@string/there_is_nothing_to_show_text"
+            android:textAppearance="@style/TextAppearance.AppCompat.DefaultTextStyle"
+            android:visibility="invisible"
+            app:layout_constraintBottom_toTopOf="@id/tv_best_seller"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/tv_hot_sales" />
+
+        <androidx.appcompat.widget.AppCompatTextView
             android:id="@+id/tv_hot_sales_see_more"
             style="@style/TextAppearance.AppCompat.Thin"
             android:layout_width="wrap_content"
@@ -62,6 +74,18 @@
             android:layout_marginStart="17dp"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@id/vp_hot_sales" />
+
+        <androidx.appcompat.widget.AppCompatTextView
+            android:id="@+id/tv_best_seller_empty"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="@string/there_is_nothing_to_show_text"
+            android:textAppearance="@style/TextAppearance.AppCompat.DefaultTextStyle"
+            android:visibility="invisible"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/tv_best_seller" />
 
         <androidx.appcompat.widget.AppCompatTextView
             android:id="@+id/tv_best_seller_see_more"

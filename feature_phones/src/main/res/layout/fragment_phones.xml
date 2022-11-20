@@ -1,9 +1,9 @@
 <?xml version="1.0" encoding="utf-8"?>
 <androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    xmlns:tools="http://schemas.android.com/tools"
     tools:theme="@style/Theme.EcommerceConcept">
 
     <ProgressBar
@@ -20,13 +20,25 @@
         android:id="@+id/tv_hot_sales"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
+        android:layout_marginStart="17dp"
         android:layout_marginTop="24dp"
         android:text="@string/hot_sales_text"
         android:textAppearance="@style/TextAppearance.AppCompat.DefaultTextStyle"
         android:textSize="25sp"
-        android:layout_marginStart="17dp"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
+
+    <androidx.appcompat.widget.AppCompatTextView
+        android:id="@+id/tv_hot_sales_empty"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="@string/there_is_nothing_to_show_text"
+        android:textAppearance="@style/TextAppearance.AppCompat.DefaultTextStyle"
+        android:visibility="invisible"
+        app:layout_constraintBottom_toTopOf="@id/tv_best_seller"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/tv_hot_sales" />
 
     <androidx.appcompat.widget.AppCompatTextView
         android:id="@+id/tv_hot_sales_see_more"
@@ -52,11 +64,11 @@
         android:id="@+id/tv_best_seller"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
+        android:layout_marginStart="17dp"
         android:layout_marginTop="10dp"
         android:text="@string/best_seller_text"
         android:textAppearance="@style/TextAppearance.AppCompat.DefaultTextStyle"
         android:textSize="25sp"
-        android:layout_marginStart="17dp"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@id/vp_hot_sales" />
 
@@ -71,6 +83,18 @@
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintTop_toTopOf="@id/tv_best_seller" />
 
+    <androidx.appcompat.widget.AppCompatTextView
+        android:id="@+id/tv_best_seller_empty"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="@string/there_is_nothing_to_show_text"
+        android:textAppearance="@style/TextAppearance.AppCompat.DefaultTextStyle"
+        android:visibility="invisible"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/tv_best_seller" />
+
     <androidx.recyclerview.widget.RecyclerView
         android:id="@+id/rv_best_seller"
         android:layout_width="0dp"
@@ -78,11 +102,11 @@
         android:layout_marginTop="21dp"
         android:paddingStart="14dp"
         app:layoutManager="androidx.recyclerview.widget.GridLayoutManager"
+        app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@id/tv_best_seller"
-        app:layout_constraintBottom_toBottomOf="parent"
         app:spanCount="2"
-        tools:listitem="@layout/best_seller_list_item"/>
+        tools:listitem="@layout/best_seller_list_item" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>

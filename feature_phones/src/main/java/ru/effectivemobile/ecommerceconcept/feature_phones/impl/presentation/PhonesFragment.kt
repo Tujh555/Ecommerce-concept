@@ -12,20 +12,19 @@ import androidx.lifecycle.lifecycleScope
 import by.kirich1409.viewbindingdelegate.viewBinding
 import kotlinx.coroutines.flow.collectLatest
 import ru.effectivemobile.ecommerceconcept.feature_phones.R
-import ru.effectivemobile.ecommerceconcept.feature_phones.api.Filter
+import ru.effectivemobile.ecommerceconcept.feature_phones.api.PhoneFilterData
 import ru.effectivemobile.ecommerceconcept.feature_phones.databinding.FragmentPhonesBinding
 import ru.effectivemobile.ecommerceconcept.feature_phones.impl.di.FeaturePhonesComponentHolder
 import ru.effectivemobile.ecommerceconcept.feature_phones.impl.di.PhonesDependencyProvider
-import ru.effectivemobile.ecommerceconcept.feature_phones.impl.di.qualifiers.PhonesInfo
 import ru.effectivemobile.ecommerceconcept.feature_phones.impl.domain.entities.Response
 import ru.effectivemobile.ecommerceconcept.feature_phones.impl.presentation.adapters.BestSellerAdapter
 import ru.effectivemobile.ecommerceconcept.feature_phones.impl.presentation.adapters.HotSalesAdapter
-import ru.effectivemobile.ecommerceconcept.feature_phones.impl.presentation.filter.FilterDialog
 import ru.effectivemobile.ecommerceconcept.navigation.NavigationInfo
+import ru.effectivemobile.ecommerceconcept.navigation.getNavigationData
 import ru.effectivemobile.ecommerceconcept.navigation.navigateWithInfo
 import javax.inject.Inject
 
-internal class PhonesFragment : Fragment(R.layout.fragment_phones), FilterInteract, Filter {
+internal class PhonesFragment : Fragment(R.layout.fragment_phones) {
     private val binding by viewBinding(FragmentPhonesBinding::bind)
 
     @Inject
@@ -51,12 +50,14 @@ internal class PhonesFragment : Fragment(R.layout.fragment_phones), FilterIntera
         FeaturePhonesComponentHolder.featureComponent.inject(this@PhonesFragment)
     }
 
-    override fun startFiltering() {
-        FilterDialog().show(childFragmentManager, "")
-    }
+    override fun onCreate(savedInstanceState: Bundle?) {
+        super.onCreate(savedInstanceState)
 
-    override fun filter(filterData: PhoneFilterData) {
-        viewModel.filter(filterData)
+        val filterData = getNavigationData<PhoneFilterData>()
+
+        Log.d("MyLogs", "Filter data $filterData")
+
+        viewModel.startLoading(filterData)
     }
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
@@ -69,14 +70,27 @@ internal class PhonesFragment : Fragment(R.layout.fragment_phones), FilterIntera
         viewLifecycleOwner.lifecycleScope.launchWhenResumed {
             viewModel.phonesData.collectLatest {
                 when (it) {
-                    is Response.Failure -> Toast.makeText(requireContext(), "Failure", Toast.LENGTH_SHORT).show()
+                    is Response.Failure -> {
+                        Toast.makeText(requireContext(), "Failure", Toast.LENGTH_SHORT).show()
+                        binding.tvBestSellerEmpty.visibility = View.VISIBLE
+                        binding.tvHotSalesEmpty.visibility = View.VISIBLE
+                    }
                     is Response.Loading -> {
                         binding.progressBar.visibility = View.VISIBLE
                     }
                     is Response.Success -> {
                         binding.progressBar.visibility = View.INVISIBLE
-                        hotSalesAdapter.submitList(it.answer.homePageProducts)
-                        bestSellerAdapter.submitList(it.answer.bestSellerProducts)
+                        if (it.answer.homePageProducts.isNotEmpty()) {
+                            hotSalesAdapter.submitList(it.answer.homePageProducts)
+                        } else {
+                            binding.tvBestSellerEmpty.visibility = View.VISIBLE
+                        }
+
+                        if (it.answer.bestSellerProducts.isNotEmpty()) {
+                            bestSellerAdapter.submitList(it.answer.bestSellerProducts)
+                        } else {
+                            binding.tvHotSalesEmpty.visibility = View.VISIBLE
+                        }
                     }
                     is Response.Idle -> { }
                 }

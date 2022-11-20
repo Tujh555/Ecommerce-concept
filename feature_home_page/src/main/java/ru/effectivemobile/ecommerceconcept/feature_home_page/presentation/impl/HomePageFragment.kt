@@ -1,21 +1,18 @@
 package ru.effectivemobile.ecommerceconcept.feature_home_page.presentation.impl
 
 import android.os.Bundle
-import android.util.Log
-import android.view.LayoutInflater
 import android.view.View
-import android.view.ViewGroup
 import androidx.fragment.app.Fragment
-import androidx.navigation.fragment.findNavController
+import by.kirich1409.viewbindingdelegate.viewBinding
 import ru.effectivemobile.ecommerceconcept.feature_home_page.R
 import ru.effectivemobile.ecommerceconcept.feature_home_page.databinding.FragmentHomePageBinding
 import ru.effectivemobile.ecommerceconcept.feature_home_page.presentation.impl.di.HomePageComponentHolder
-import ru.effectivemobile.ecommerceconcept.feature_phones.api.Filter
+import ru.effectivemobile.ecommerceconcept.feature_phones.api.PhoneFilterData
 import ru.effectivemobile.ecommerceconcept.navigation.navigate
 import ru.effectivemobile.ecommerceconcept.navigation.navigateWithInfo
 
-internal class HomePageFragment : Fragment(R.layout.fragment_home_page) {
-    private var binding: FragmentHomePageBinding? = null
+internal class HomePageFragment : Fragment(R.layout.fragment_home_page), FilterInteract {
+    private val binding by viewBinding(FragmentHomePageBinding::bind)
     private val strings by lazy {
         resources.getStringArray(R.array.home_page_categories)
     }
@@ -51,33 +48,24 @@ internal class HomePageFragment : Fragment(R.layout.fragment_home_page) {
 
     private val adapter = CategoriesAdapter()
 
-    override fun onCreateView(
-        inflater: LayoutInflater,
-        container: ViewGroup?,
-        savedInstanceState: Bundle?
-    ): View? {
-        binding = FragmentHomePageBinding.inflate(inflater, container, false)
-        return binding?.root
-    }
-
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
 
         adapter.onCategoryClickListener = categoryClickListener
 
-        binding?.run {
+        binding.run {
             rvCategories.adapter = adapter
             adapter.submitList(initList())
 
             ivFilter.setOnClickListener {
-
+                FilterDialog().show(childFragmentManager, "")
             }
         }
     }
 
-    override fun onDestroyView() {
-        super.onDestroyView()
-
-        binding = null
+    override fun filter(filterData: PhoneFilterData) {
+        HomePageComponentHolder.navigationInfo?.let { info ->
+            navigateWithInfo(info.toNavigationInfo(), filterData)
+        }
     }
 }

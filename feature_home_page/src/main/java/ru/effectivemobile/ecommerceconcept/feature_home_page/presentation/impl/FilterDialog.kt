@@ -1,18 +1,22 @@
-package ru.effectivemobile.ecommerceconcept.feature_phones.impl.presentation.filter
+package ru.effectivemobile.ecommerceconcept.feature_home_page.presentation.impl
 
 import android.app.Dialog
 import android.os.Bundle
 import android.view.View
+import android.widget.ArrayAdapter
 import android.widget.FrameLayout
+import androidx.core.view.isVisible
 import by.kirich1409.viewbindingdelegate.viewBinding
 import com.google.android.material.bottomsheet.BottomSheetDialogFragment
-import ru.effectivemobile.ecommerceconcept.feature_phones.R
-import ru.effectivemobile.ecommerceconcept.feature_phones.impl.presentation.FilterInteract
-import ru.effectivemobile.ecommerceconcept.feature_phones.databinding.FragmentFilterBinding
+import ru.effectivemobile.ecommerceconcept.feature_home_page.R
+import ru.effectivemobile.ecommerceconcept.feature_home_page.databinding.FragmentFilterBinding
 
 internal class FilterDialog : BottomSheetDialogFragment(R.layout.fragment_filter) {
     private val binding by viewBinding(FragmentFilterBinding::bind)
     private var filterInteract: FilterInteract? = null
+    private val brands by lazy {
+        resources.getStringArray(R.array.phone_brands)
+    }
 
     override fun onCreateDialog(savedInstanceState: Bundle?): Dialog {
         return super.onCreateDialog(savedInstanceState).apply {
@@ -32,12 +36,20 @@ internal class FilterDialog : BottomSheetDialogFragment(R.layout.fragment_filter
             dismiss()
         }
 
-        filterInteract = parentFragment as? FilterInteract
+        val adapter = ArrayAdapter(
+            requireContext(),
+            android.R.layout.simple_expandable_list_item_1,
+            brands
+        )
+
+        binding.tvBrandSpinner.setAdapter(adapter)
+
+        filterInteract = parentFragment as FilterInteract
 
         binding.cvDone.setOnClickListener {
             filterInteract?.filter(
                 FilterDataImpl(
-                    brand = "Xiaomi",
+                    brand = "Aboba",
                     priceTop = 500,
                     priceBottom = 300,
                     sizeTop = 5.5f,

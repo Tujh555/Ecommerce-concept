@@ -6,6 +6,7 @@ import androidx.lifecycle.viewModelScope
 import kotlinx.coroutines.flow.MutableStateFlow
 import kotlinx.coroutines.flow.asStateFlow
 import kotlinx.coroutines.launch
+import ru.effectivemobile.ecommerceconcept.feature_phones.api.PhoneFilterData
 import ru.effectivemobile.ecommerceconcept.feature_phones.impl.di.FeaturePhonesComponentHolder
 import ru.effectivemobile.ecommerceconcept.feature_phones.impl.domain.entities.HomePageData
 import ru.effectivemobile.ecommerceconcept.feature_phones.impl.domain.entities.Response
@@ -18,14 +19,19 @@ internal class PhonesViewModel @Inject constructor(
     private val _phonesData = MutableStateFlow<Response<HomePageData>>(Response.Idle())
     val phonesData = _phonesData.asStateFlow()
 
-    init {
+    fun startLoading(filterData: PhoneFilterData?) {
         viewModelScope.launch {
             if (_phonesData.value !is Response.Idle) return@launch
 
             _phonesData.emit(Response.Loading())
 
             val data = try {
-                Response.Success(getHomePageUseCase())
+                val response = getHomePageUseCase()
+                if (filterData != null) {
+                    Response.Success(response.filter(filterData))
+                } else {
+                    Response.Success(response)
+                }
             } catch (e: Exception) {
                 Response.Failure(e)
             }
@@ -40,13 +46,13 @@ internal class PhonesViewModel @Inject constructor(
         FeaturePhonesComponentHolder.reset()
     }
 
-    fun filter(filterData: PhoneFilterData) {
-        if (_phonesData.value is Response.Success<HomePageData>) {
-            (_phonesData.value as Response.Success).answer.let { homePageData ->
-                _phonesData.value = Response.Success(homePageData.filter(filterData))
-            }
-        }
-    }
+//    fun filter(filterData: ru.effectivemobile.ecommerceconcept.feature_home_page.presentation.impl.PhoneFilterData) {
+//        if (_phonesData.value is Response.Success<HomePageData>) {
+//            (_phonesData.value as Response.Success).answer.let { homePageData ->
+//                _phonesData.value = Response.Success(homePageData.filter(filterData))
+//            }
+//        }
+//    }
 
     private fun HomePageData.filter(filterData: PhoneFilterData): HomePageData {
         val newBestSellerProducts = bestSellerProducts.filter {

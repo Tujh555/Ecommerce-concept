@@ -25,7 +25,8 @@ fun Fragment.navigate(actionId: Int, hostId: Int? = null, data: Parcelable? = nu
 
 fun Fragment.navigateWithInfo(navInfo: NavigationInfo, data: Parcelable? = null) = this.navigate(
     actionId = navInfo.actionId,
-    hostId = navInfo.hostId
+    hostId = navInfo.hostId,
+    data
 )
 
 inline fun <reified T : Parcelable> Fragment.getNavigationData(): T? {

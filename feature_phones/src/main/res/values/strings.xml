@@ -7,13 +7,7 @@
     <string name="best_seller_text">Best Seller</string>
     <string name="strikethrough_price"><strike>$%s</strike></string>
     <string name="price">$%s</string>
+    <string name="there_is_nothing_to_show_text">There is nothing to show</string>
 
-    <string name="done_button_text">Done</string>
-    <string name="filter_options_text">Filter options</string>
-    <string name="brand_text">Brand</string>
-    <string name="price_text">Price</string>
-    <string name="brand_spinner_text">Any</string>
-    <string name="price_spinner_text">Doesn\'t matter</string>
-    <string name="size_text">Size</string>
-    <string name="all_sizes_text">All sizes</string>
+
 </resources>
