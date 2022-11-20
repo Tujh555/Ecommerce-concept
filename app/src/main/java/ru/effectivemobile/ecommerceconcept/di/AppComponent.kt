@@ -39,7 +39,7 @@ class AppModule {
 
     @AppScope
     @Provides
-    fun provideFeaturePhonesDependencis(service: StoreService): FeaturePhonesDependencies {
+    fun provideFeaturePhonesDependencies(service: StoreService): FeaturePhonesDependencies {
         return object : FeaturePhonesDependencies {
             override val service: StoreService
                 get() = service

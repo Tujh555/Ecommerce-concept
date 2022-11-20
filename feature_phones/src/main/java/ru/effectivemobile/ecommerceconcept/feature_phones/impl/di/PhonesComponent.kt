@@ -3,6 +3,7 @@ package ru.effectivemobile.ecommerceconcept.feature_phones.impl.di
 import dagger.Component
 import ru.effectivemobile.ecommerceconcept.feature_phones.api.FeaturePhonesApi
 import ru.effectivemobile.ecommerceconcept.feature_phones.api.FeaturePhonesDependencies
+import ru.effectivemobile.ecommerceconcept.feature_phones.impl.di.modules.ApiModule
 import ru.effectivemobile.ecommerceconcept.feature_phones.impl.di.modules.RepositoryModule
 import ru.effectivemobile.ecommerceconcept.feature_phones.impl.di.modules.UseCasesModule
 import ru.effectivemobile.ecommerceconcept.feature_phones.impl.di.modules.ViewModelModule
@@ -14,7 +15,8 @@ import ru.effectivemobile.ecommerceconcept.feature_phones.impl.presentation.Phon
     modules = [
         RepositoryModule::class,
         UseCasesModule::class,
-        ViewModelModule::class
+        ViewModelModule::class,
+        ApiModule::class
     ]
 )
 internal abstract class PhonesComponent : FeaturePhonesApi {

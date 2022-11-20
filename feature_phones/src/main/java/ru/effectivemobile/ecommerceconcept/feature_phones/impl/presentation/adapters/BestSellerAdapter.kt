@@ -48,6 +48,11 @@ internal class BestSellerAdapter @Inject constructor(
                         R.string.strikethrough_price,
                         String.format(Locale.US, "%,d", item.priceWithoutDiscount.toInt())
                     )
+                ivIsInFavorites.isChecked = item.isFavorites
+
+                ivIsInFavorites.setOnClickListener {
+                    item.isFavorites = !item.isFavorites
+                }
 
                 Glide.with(root)
                     .load(item.pictureUrl)

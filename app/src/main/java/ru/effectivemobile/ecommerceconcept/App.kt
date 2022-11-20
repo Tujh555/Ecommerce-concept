@@ -2,6 +2,7 @@ package ru.effectivemobile.ecommerceconcept
 
 import android.app.Application
 import android.util.Log
+import androidx.appcompat.app.AppCompatDelegate
 import ru.effectivemobile.ecommerceconcept.di.AppComponent
 import ru.effectivemobile.ecommerceconcept.di.DaggerAppComponent
 import ru.effectivemobile.ecommerceconcept.feature_cart_api.CartFeatureApi
@@ -19,6 +20,7 @@ class App : Application() {
 
     override fun onCreate() {
         super.onCreate()
+        AppCompatDelegate.setDefaultNightMode(AppCompatDelegate.MODE_NIGHT_NO)
         _appComponent = DaggerAppComponent.builder().build()
     }
 }
