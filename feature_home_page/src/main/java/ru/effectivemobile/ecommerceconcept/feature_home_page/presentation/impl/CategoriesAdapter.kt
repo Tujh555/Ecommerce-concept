@@ -1,6 +1,5 @@
-package ru.effectivemobile.ecommerceconcept.feature_home_page.presentation
+package ru.effectivemobile.ecommerceconcept.feature_home_page.presentation.impl
 
-import android.util.Log
 import android.view.LayoutInflater
 import android.view.ViewGroup
 import androidx.appcompat.content.res.AppCompatResources
@@ -40,8 +39,8 @@ internal class CategoriesAdapter : ListAdapter<Category, RecyclerView.ViewHolder
     override fun onBindViewHolder(holder: RecyclerView.ViewHolder, position: Int) {
         holder.run {
             itemView.setOnClickListener {
-                if (bindingAdapterPosition != selectedItemPosition) {
-                    selectedItemPosition = bindingAdapterPosition
+                if (adapterPosition != selectedItemPosition) {
+                    selectedItemPosition = adapterPosition
 
                     lastSelectedItemPosition = if (lastSelectedItemPosition == -1) {
                         selectedItemPosition

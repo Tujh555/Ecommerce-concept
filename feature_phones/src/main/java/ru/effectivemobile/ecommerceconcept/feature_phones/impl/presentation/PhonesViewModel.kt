@@ -1,12 +1,11 @@
 package ru.effectivemobile.ecommerceconcept.feature_phones.impl.presentation
 
+import android.util.Log
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
 import kotlinx.coroutines.flow.MutableStateFlow
 import kotlinx.coroutines.flow.asStateFlow
 import kotlinx.coroutines.launch
-import ru.effectivemobile.ecommerceconcept.feature_phones.api.FilterInteract
-import ru.effectivemobile.ecommerceconcept.feature_phones.api.PhoneFilterData
 import ru.effectivemobile.ecommerceconcept.feature_phones.impl.di.FeaturePhonesComponentHolder
 import ru.effectivemobile.ecommerceconcept.feature_phones.impl.domain.entities.HomePageData
 import ru.effectivemobile.ecommerceconcept.feature_phones.impl.domain.entities.Response
@@ -15,13 +14,13 @@ import javax.inject.Inject
 
 internal class PhonesViewModel @Inject constructor(
     private val getHomePageUseCase: GetHomePageUseCase
-) : ViewModel(), FilterInteract {
+) : ViewModel() {
     private val _phonesData = MutableStateFlow<Response<HomePageData>>(Response.Idle())
     val phonesData = _phonesData.asStateFlow()
 
     init {
         viewModelScope.launch {
-            if (_phonesData.value is Response.Idle) return@launch
+            if (_phonesData.value !is Response.Idle) return@launch
 
             _phonesData.emit(Response.Loading())
 
@@ -41,7 +40,7 @@ internal class PhonesViewModel @Inject constructor(
         FeaturePhonesComponentHolder.reset()
     }
 
-    override fun filter(filterData: PhoneFilterData) {
+    fun filter(filterData: PhoneFilterData) {
         if (_phonesData.value is Response.Success<HomePageData>) {
             (_phonesData.value as Response.Success).answer.let { homePageData ->
                 _phonesData.value = Response.Success(homePageData.filter(filterData))
@@ -51,12 +50,17 @@ internal class PhonesViewModel @Inject constructor(
 
     private fun HomePageData.filter(filterData: PhoneFilterData): HomePageData {
         val newBestSellerProducts = bestSellerProducts.filter {
-            filterData.brand in it.title.lowercase() && it.priceWithDiscount.toInt() in filterData.priceRange
+            Log.d("MyLogs", "Filter ${it.priceWithDiscount}")
+            filterData.brand.lowercase() in it.title.lowercase()
+                    && it.priceWithDiscount.toInt() in (filterData.priceBottom..filterData.priceTop)
         }
 
         val newHotSales = homePageProducts.filter {
-            filterData.brand in it.title.lowercase()
+            filterData.brand.lowercase() in it.title.lowercase()
         }
+
+        Log.d("MyLogs", "$newBestSellerProducts")
+        Log.d("MyLogs", "$newHotSales")
 
         return copy(
             bestSellerProducts = newBestSellerProducts,

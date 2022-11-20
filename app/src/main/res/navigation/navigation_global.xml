@@ -20,8 +20,15 @@
 
     <fragment
         android:id="@+id/homePageFragment"
-        android:name="ru.effectivemobile.ecommerceconcept.feature_home_page.presentation.HomePageFragment"
-        android:label="HomePageFragment"/>
+        android:name="ru.effectivemobile.ecommerceconcept.feature_home_page.presentation.impl.HomePageFragment"
+        android:label="HomePageFragment">
+
+        <action
+            android:id="@id/action_global_navigate_to_cartFragment"
+            app:destination="@id/cartFragment"
+            app:popUpTo="@id/homePageFragment"/>
+
+    </fragment>
 
     <fragment
         android:id="@+id/phonesFragment"

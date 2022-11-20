@@ -12,7 +12,7 @@
         android:layout_height="match_parent"
         app:layout_constraintTop_toTopOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintEnd_toStartOf="@id/home_page_container">
+        app:layout_constraintEnd_toStartOf="@id/host_main">
 
         <ImageView
             android:id="@+id/iv_location"
@@ -46,6 +46,7 @@
             app:layout_constraintTop_toTopOf="@id/tv_location" />
 
         <ImageView
+            android:id="@+id/iv_filter"
             android:layout_width="11dp"
             android:layout_height="9dp"
             android:layout_marginEnd="33dp"
@@ -147,7 +148,7 @@
     </androidx.constraintlayout.widget.ConstraintLayout>
 
     <androidx.fragment.app.FragmentContainerView
-        android:id="@+id/home_page_container"
+        android:id="@id/host_main"
         android:name="androidx.navigation.fragment.NavHostFragment"
         android:layout_width="0dp"
         android:layout_height="match_parent"

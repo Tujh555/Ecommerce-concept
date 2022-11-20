@@ -16,6 +16,7 @@ import ru.effectivemobile.ecommerceconcept.feature_cart.databinding.FragmentCart
 import ru.effectivemobile.ecommerceconcept.feature_cart_impl.data.Response
 import ru.effectivemobile.ecommerceconcept.feature_cart_impl.di.CartDependencyProvider
 import ru.effectivemobile.ecommerceconcept.feature_cart_impl.di.CartFeatureComponentHolder
+import ru.effectivemobile.ecommerceconcept.navigation.getNavigationData
 import javax.inject.Inject
 
 internal class CartFragment : Fragment(R.layout.fragment_cart) {

@@ -66,4 +66,5 @@ dependencies {
     implementation project(":feature_splash")
     implementation project(":feature_home_page")
     implementation project(":feature_phones")
+    implementation project(":navigation")
 }

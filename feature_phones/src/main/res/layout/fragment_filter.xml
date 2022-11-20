@@ -4,10 +4,11 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:background="@drawable/two_rounded_corners_background"
     android:layout_width="match_parent"
-    android:layout_height="wrap_content">
+    android:layout_height="wrap_content"
+    tools:theme="@style/Theme.EcommerceConcept">
 
     <com.google.android.material.card.MaterialCardView
-        android:id="@+id/cv_close"
+        android:id="@+id/cv_close_dialog"
         style="@style/SmallButton"
         android:layout_marginStart="44dp"
         android:layout_marginTop="@dimen/top_margin_for_top_buttons"
@@ -42,7 +43,7 @@
         android:backgroundTint="@color/orange_main"
         app:cardCornerRadius="10dp"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintTop_toTopOf="@id/cv_close">
+        app:layout_constraintTop_toTopOf="@id/cv_close_dialog">
 
         <androidx.appcompat.widget.AppCompatTextView
             android:layout_width="wrap_content"
@@ -67,7 +68,7 @@
         android:text="@string/brand_text"
         android:textAppearance="@style/RegularText"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@id/cv_close" />
+        app:layout_constraintTop_toBottomOf="@id/cv_close_dialog" />
 
     <com.google.android.material.textfield.TextInputLayout
         android:id="@+id/til_brand"
@@ -143,9 +144,11 @@
         android:layout_height="37dp"
         android:layout_marginTop="5dp"
         android:layout_marginEnd="31dp"
+        android:layout_marginBottom="40dp"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="@id/tv_size"
-        app:layout_constraintTop_toBottomOf="@id/tv_size">
+        app:layout_constraintTop_toBottomOf="@id/tv_size"
+        app:layout_constraintBottom_toBottomOf="parent">
 
         <AutoCompleteTextView
             android:id="@+id/tv_size_spinner"

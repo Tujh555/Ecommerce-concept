@@ -23,6 +23,11 @@ fun Fragment.navigate(actionId: Int, hostId: Int? = null, data: Parcelable? = nu
     navController.navigate(actionId, bundle)
 }
 
+fun Fragment.navigateWithInfo(navInfo: NavigationInfo, data: Parcelable? = null) = this.navigate(
+    actionId = navInfo.actionId,
+    hostId = navInfo.hostId
+)
+
 inline fun <reified T : Parcelable> Fragment.getNavigationData(): T? {
     return if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.TIRAMISU) {
         arguments?.getParcelable(DATA_KEY, T::class.java)

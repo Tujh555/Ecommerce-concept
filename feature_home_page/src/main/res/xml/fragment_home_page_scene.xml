@@ -13,7 +13,7 @@
             motion:onTouchUp="autoComplete"
             motion:maxVelocity="30"
             motion:maxAcceleration="40"
-            motion:touchAnchorId="@id/home_page_container"
+            motion:touchAnchorId="@id/host_main"
             motion:touchAnchorSide="top"/>
     </Transition>
 

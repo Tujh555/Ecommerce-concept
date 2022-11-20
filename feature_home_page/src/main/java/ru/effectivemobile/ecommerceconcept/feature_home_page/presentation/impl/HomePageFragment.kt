@@ -1,16 +1,18 @@
-package ru.effectivemobile.ecommerceconcept.feature_home_page.presentation
+package ru.effectivemobile.ecommerceconcept.feature_home_page.presentation.impl
 
 import android.os.Bundle
+import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-import androidx.core.graphics.Insets
-import androidx.core.view.ViewCompat
-import androidx.core.view.WindowInsetsCompat
 import androidx.fragment.app.Fragment
+import androidx.navigation.fragment.findNavController
 import ru.effectivemobile.ecommerceconcept.feature_home_page.R
 import ru.effectivemobile.ecommerceconcept.feature_home_page.databinding.FragmentHomePageBinding
+import ru.effectivemobile.ecommerceconcept.feature_home_page.presentation.impl.di.HomePageComponentHolder
+import ru.effectivemobile.ecommerceconcept.feature_phones.api.Filter
 import ru.effectivemobile.ecommerceconcept.navigation.navigate
+import ru.effectivemobile.ecommerceconcept.navigation.navigateWithInfo
 
 internal class HomePageFragment : Fragment(R.layout.fragment_home_page) {
     private var binding: FragmentHomePageBinding? = null
@@ -19,9 +21,11 @@ internal class HomePageFragment : Fragment(R.layout.fragment_home_page) {
     }
     private val categoryClickListener = CategoriesAdapter.OnCategoryClickListener {
         if (it == strings[0]) {
-            navigate(R.id.action_to_phonesFragment, R.id.home_page_container)
+            HomePageComponentHolder.navigationInfo?.toNavigationInfo()?.let { info ->
+                navigateWithInfo(info)
+            }
         } else {
-            navigate(R.id.action_to_notImplementedFragment, R.id.home_page_container)
+            navigate(R.id.action_to_notImplementedFragment, ru.effectivemobile.ecommerceconcept.navigation.R.id.host_main)
         }
     }
 
@@ -64,6 +68,10 @@ internal class HomePageFragment : Fragment(R.layout.fragment_home_page) {
         binding?.run {
             rvCategories.adapter = adapter
             adapter.submitList(initList())
+
+            ivFilter.setOnClickListener {
+
+            }
         }
     }
 
