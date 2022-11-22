@@ -2,7 +2,10 @@ package ru.effectivemobile.ecommerceconcept.feature_phone_details.impl.presentat
 
 import android.content.Context
 import android.content.res.Resources
+import android.net.ConnectivityManager
+import android.net.Network
 import android.os.Bundle
+import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
@@ -27,6 +30,7 @@ import ru.effectivemobile.ecommerceconcept.feature_phone_details.impl.di.Feature
 import ru.effectivemobile.ecommerceconcept.feature_phone_details.impl.di.PhoneDetailsComponentHolder
 import ru.effectivemobile.ecommerceconcept.feature_phone_details.impl.presentation.adapters.CarouselAdapter
 import ru.effectivemobile.ecommerceconcept.feature_phone_details.impl.presentation.adapters.MainInfoAdapter
+import ru.effectivemobile.ecommerceconcept.navigation.getNavigationData
 import ru.effectivemobile.ecommerceconcept.navigation.navigateWithInfo
 import ru.effectivemobile.ecommerceconcept.navigation.popUp
 import javax.inject.Inject
@@ -62,7 +66,7 @@ internal class PhoneDetailsFragment : Fragment(R.layout.fragment_phone_details) 
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
-
+        observeConnectionState()
         observeFlows()
         initUi()
     }
@@ -107,11 +111,15 @@ internal class PhoneDetailsFragment : Fragment(R.layout.fragment_phone_details) 
         viewLifecycleOwner.lifecycleScope.launchWhenStarted {
             viewModel.details.collect {
                 when (it) {
-                    is Response.Failure -> Toast.makeText(
-                        requireContext(),
-                        resources.getString(R.string.failure_text),
-                        Toast.LENGTH_SHORT
-                    ).show()
+                    is Response.Failure -> {
+                        Toast.makeText(
+                            requireContext(),
+                            resources.getString(R.string.failure_text),
+                            Toast.LENGTH_SHORT
+                        ).show()
+
+                        binding.progressBar.visibility = View.INVISIBLE
+                    }
 
                     is Response.Idle -> {}
 
@@ -133,5 +141,18 @@ internal class PhoneDetailsFragment : Fragment(R.layout.fragment_phone_details) 
                 }
             }
         }
+    }
+
+    private fun observeConnectionState() {
+        val connectivityManager = requireContext().getSystemService(ConnectivityManager::class.java)
+
+        connectivityManager.registerDefaultNetworkCallback(
+            object : ConnectivityManager.NetworkCallback() {
+                override fun onAvailable(network: Network) {
+                    Log.e("MyLogs", "Available phone details")
+                    viewModel.startLoading()
+                }
+            }
+        )
     }
 }

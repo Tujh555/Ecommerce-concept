@@ -17,6 +17,7 @@
     <string name="cart_text">Cart</string>
     <string name="favorites_text">Favorites</string>
     <string name="account_text">Account</string>
+    <string name="location_text">Zihuatanejo, Gro</string>
 
     <string-array name="phone_brands">
         <item>Samsung</item>

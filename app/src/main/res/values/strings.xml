@@ -1,3 +1,5 @@
 <resources>
     <string name="app_name">Ecommerce concept</string>
+    <string name="connection_is_lost">Connection interrupted</string>
+    <string name="attention">Attention</string>
 </resources>

@@ -1,10 +1,13 @@
 package ru.effectivemobile.ecommerceconcept.feature_phones.impl.presentation
 
 import android.content.Context
+import android.net.ConnectivityManager
+import android.net.Network
 import android.os.Bundle
 import android.util.Log
 import android.view.View
 import android.widget.Toast
+import androidx.core.content.ContextCompat.getSystemService
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.viewModels
 import androidx.lifecycle.ViewModelProvider
@@ -65,6 +68,7 @@ internal class PhonesFragment : Fragment(R.layout.fragment_phones) {
         super.onViewCreated(view, savedInstanceState)
         initView()
         collectData()
+        observeConnectionState()
     }
 
     private fun collectData() {
@@ -77,9 +81,17 @@ internal class PhonesFragment : Fragment(R.layout.fragment_phones) {
                         binding.progressBar.visibility = View.INVISIBLE
 
                         if (it.exception is ConnectException || it.exception is UnknownHostException) {
-                            Toast.makeText(requireContext(), "Check your network connection", Toast.LENGTH_SHORT).show()
+                            Toast.makeText(
+                                requireContext(),
+                                "Check your network connection",
+                                Toast.LENGTH_SHORT
+                            ).show()
                         } else {
-                            Toast.makeText(requireContext(), "Something went wrong...", Toast.LENGTH_SHORT).show()
+                            Toast.makeText(
+                                requireContext(),
+                                "Something went wrong...",
+                                Toast.LENGTH_SHORT
+                            ).show()
                         }
                     }
                     is Response.Loading -> {
@@ -99,7 +111,7 @@ internal class PhonesFragment : Fragment(R.layout.fragment_phones) {
                             binding.tvBestSellerEmpty.visibility = View.VISIBLE
                         }
                     }
-                    is Response.Idle -> { }
+                    is Response.Idle -> {}
                 }
             }
         }
@@ -120,5 +132,17 @@ internal class PhonesFragment : Fragment(R.layout.fragment_phones) {
             vpHotSales.adapter = hotSalesAdapter
             rvBestSeller.adapter = bestSellerAdapter
         }
+    }
+
+    private fun observeConnectionState() {
+        val connectivityManager = requireContext().getSystemService(ConnectivityManager::class.java)
+
+        connectivityManager.registerDefaultNetworkCallback(
+            object : ConnectivityManager.NetworkCallback() {
+                override fun onAvailable(network: Network) {
+                    viewModel.startLoading(getNavigationData())
+                }
+            }
+        )
     }
 }

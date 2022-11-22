@@ -1,5 +1,7 @@
 package ru.effectivemobile.ecommerceconcept.feature_cart_impl.presentation
 
+import android.net.ConnectivityManager
+import android.net.Network
 import android.os.Bundle
 import android.util.Log
 import android.view.LayoutInflater
@@ -46,6 +48,7 @@ internal class CartFragment : Fragment(R.layout.fragment_cart) {
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
 
+        observeConnectionState()
         viewModel.loadUserCart()
         initUI()
         observeFlows()
@@ -108,5 +111,17 @@ internal class CartFragment : Fragment(R.layout.fragment_cart) {
                 }
             }
         }
+    }
+
+    private fun observeConnectionState() {
+        val connectivityManager = requireContext().getSystemService(ConnectivityManager::class.java)
+
+        connectivityManager.registerDefaultNetworkCallback(
+            object : ConnectivityManager.NetworkCallback() {
+                override fun onAvailable(network: Network) {
+                    viewModel.loadUserCart()
+                }
+            }
+        )
     }
 }

@@ -1,6 +1,8 @@
 package ru.effectivemobile.ecommerceconcept.di
 
 import android.app.Application
+import android.net.ConnectivityManager
+import dagger.BindsInstance
 import dagger.Component
 import dagger.Module
 import dagger.Provides
@@ -35,7 +37,6 @@ interface AppComponent {
 
     @Component.Builder
     interface Builder {
-
         fun build(): AppComponent
     }
 }

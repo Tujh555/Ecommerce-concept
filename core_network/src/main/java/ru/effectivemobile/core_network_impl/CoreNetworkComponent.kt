@@ -10,6 +10,6 @@ internal interface CoreNetworkComponent : CoreNetworkApi
 
 object NetworkApiProvider {
     fun get(): CoreNetworkApi {
-        return  DaggerCoreNetworkComponent.create()
+        return DaggerCoreNetworkComponent.create()
     }
 }

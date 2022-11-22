@@ -39,7 +39,7 @@ internal class CartViewModel @Inject constructor(
     }
 
     fun loadUserCart(id: String = "") {
-        if (_cartData.value !is Response.Idle) return
+        if (_cartData.value !is Response.Idle && _cartData.value !is Response.Failure) return
 
         viewModelScope.launch(exceptionHandler) {
             _cartData.emit(Response.Loading())

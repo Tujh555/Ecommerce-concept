@@ -1,5 +1,6 @@
 package ru.effectivemobile.ecommerceconcept.feature_phones.impl.presentation
 
+import android.util.Log
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
 import kotlinx.coroutines.flow.MutableStateFlow
@@ -20,7 +21,7 @@ internal class PhonesViewModel @Inject constructor(
 
     fun startLoading(filterData: PhoneFilterData?) {
         viewModelScope.launch {
-            if (_phonesData.value !is Response.Idle) return@launch
+            if (_phonesData.value !is Response.Idle && _phonesData.value !is Response.Failure) return@launch
 
             _phonesData.emit(Response.Loading())
 

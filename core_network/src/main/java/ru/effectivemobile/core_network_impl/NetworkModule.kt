@@ -11,10 +11,12 @@ import javax.inject.Singleton
 internal class NetworkModule {
     @Singleton
     @Provides
-    fun provideStoreService(): StoreService = Retrofit
-        .Builder()
-        .baseUrl(Const.BASE_URL)
-        .addConverterFactory(GsonConverterFactory.create())
-        .build()
-        .create(StoreService::class.java)
+    fun provideStoreService(): StoreService {
+        return Retrofit
+            .Builder()
+            .baseUrl(Const.BASE_URL)
+            .addConverterFactory(GsonConverterFactory.create())
+            .build()
+            .create(StoreService::class.java)
+    }
 }
