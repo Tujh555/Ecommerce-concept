@@ -1,4 +1,4 @@
-package ru.effectivemobile.ecommerceconcept.feature_home_page.presentation.impl
+package ru.effectivemobile.ecommerceconcept.feature_home_page.presentation.impl.categories
 
 import android.view.LayoutInflater
 import android.view.ViewGroup

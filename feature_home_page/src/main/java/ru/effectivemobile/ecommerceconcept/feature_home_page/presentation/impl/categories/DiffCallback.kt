@@ -1,4 +1,4 @@
-package ru.effectivemobile.ecommerceconcept.feature_home_page.presentation.impl
+package ru.effectivemobile.ecommerceconcept.feature_home_page.presentation.impl.categories
 
 import androidx.recyclerview.widget.DiffUtil
 

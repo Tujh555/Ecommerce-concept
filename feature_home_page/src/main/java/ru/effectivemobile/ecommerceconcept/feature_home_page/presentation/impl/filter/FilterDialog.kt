@@ -1,4 +1,4 @@
-package ru.effectivemobile.ecommerceconcept.feature_home_page.presentation.impl
+package ru.effectivemobile.ecommerceconcept.feature_home_page.presentation.impl.filter
 
 import android.app.Dialog
 import android.os.Bundle
@@ -9,7 +9,6 @@ import by.kirich1409.viewbindingdelegate.viewBinding
 import com.google.android.material.bottomsheet.BottomSheetDialogFragment
 import ru.effectivemobile.ecommerceconcept.feature_home_page.R
 import ru.effectivemobile.ecommerceconcept.feature_home_page.databinding.FragmentFilterBinding
-import ru.effectivemobile.ecommerceconcept.feature_phones.api.PhoneFilterData
 import java.text.NumberFormat
 import java.util.*
 

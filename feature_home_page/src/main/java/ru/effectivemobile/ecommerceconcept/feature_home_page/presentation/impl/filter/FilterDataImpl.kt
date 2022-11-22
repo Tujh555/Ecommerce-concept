@@ -1,4 +1,4 @@
-package ru.effectivemobile.ecommerceconcept.feature_home_page.presentation.impl
+package ru.effectivemobile.ecommerceconcept.feature_home_page.presentation.impl.filter
 
 import android.os.Parcel
 import android.os.Parcelable

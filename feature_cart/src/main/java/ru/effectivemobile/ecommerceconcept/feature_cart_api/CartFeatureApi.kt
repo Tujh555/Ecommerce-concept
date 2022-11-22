@@ -5,4 +5,5 @@ import ru.effectivemobile.ecommerceconcept.navigation.NavigationInfo
 
 interface CartFeatureApi : BaseApi {
     val navigationInfo: CartNavigationInfo
+    val countProvider: ProductCartCountProvider
 }

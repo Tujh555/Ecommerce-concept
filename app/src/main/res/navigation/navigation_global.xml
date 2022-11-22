@@ -42,5 +42,11 @@
     <fragment
         android:id="@+id/phoneDetailsFragment"
         android:name="ru.effectivemobile.ecommerceconcept.feature_phone_details.impl.presentation.PhoneDetailsFragment"
-        android:label="PhoneDetailsFragment"/>
+        android:label="PhoneDetailsFragment">
+
+        <action
+            android:id="@id/action_global_navigate_to_cartFragment"
+            app:destination="@id/cartFragment"/>
+
+    </fragment>
 </navigation>

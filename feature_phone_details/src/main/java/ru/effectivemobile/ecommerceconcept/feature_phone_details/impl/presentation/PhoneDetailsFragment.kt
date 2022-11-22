@@ -19,6 +19,7 @@ import by.kirich1409.viewbindingdelegate.viewBinding
 import com.bumptech.glide.Glide
 import com.google.android.material.tabs.TabLayoutMediator
 import ru.effectivemobile.core_network_impl.entities.Response
+import ru.effectivemobile.ecommerceconcept.feature_cart_api.CartNavigationInfo
 import ru.effectivemobile.ecommerceconcept.feature_phone_details.R
 import ru.effectivemobile.ecommerceconcept.feature_phone_details.databinding.CarouselItemBinding
 import ru.effectivemobile.ecommerceconcept.feature_phone_details.databinding.FragmentPhoneDetailsBinding
@@ -26,6 +27,8 @@ import ru.effectivemobile.ecommerceconcept.feature_phone_details.impl.di.Feature
 import ru.effectivemobile.ecommerceconcept.feature_phone_details.impl.di.PhoneDetailsComponentHolder
 import ru.effectivemobile.ecommerceconcept.feature_phone_details.impl.presentation.adapters.CarouselAdapter
 import ru.effectivemobile.ecommerceconcept.feature_phone_details.impl.presentation.adapters.MainInfoAdapter
+import ru.effectivemobile.ecommerceconcept.navigation.navigateWithInfo
+import ru.effectivemobile.ecommerceconcept.navigation.popUp
 import javax.inject.Inject
 import kotlin.math.abs
 
@@ -43,6 +46,9 @@ internal class PhoneDetailsFragment : Fragment(R.layout.fragment_phone_details) 
 
     @Inject
     lateinit var viewModelFactory: ViewModelProvider.Factory
+
+    @Inject
+    lateinit var cartNavigationInfo: CartNavigationInfo
 
     private val viewModel by viewModels<PhoneDetailsViewModel> {
         viewModelFactory
@@ -67,6 +73,14 @@ internal class PhoneDetailsFragment : Fragment(R.layout.fragment_phone_details) 
         TabLayoutMediator(binding.tlProductActions,binding.vpMain) { tab, position ->
             tab.text = mainInfoItems[position]
         }.attach()
+
+        binding.goBackButton.setOnClickListener {
+            popUp()
+        }
+
+        binding.cartButton.setOnClickListener {
+            navigateWithInfo(cartNavigationInfo.toNavigationInfo())
+        }
 
         binding.vpImages.run {
             offscreenPageLimit = 1

@@ -1,15 +1,18 @@
 package ru.effectivemobile.ecommerceconcept.feature_home_page.presentation.impl
 
 import android.os.Bundle
-import android.util.Log
-import android.view.LayoutInflater
 import android.view.View
-import android.view.ViewGroup
+import androidx.core.content.ContextCompat
 import androidx.fragment.app.Fragment
+import androidx.lifecycle.ViewModelProvider
 import by.kirich1409.viewbindingdelegate.viewBinding
 import ru.effectivemobile.ecommerceconcept.feature_home_page.R
 import ru.effectivemobile.ecommerceconcept.feature_home_page.databinding.FragmentHomePageBinding
+import ru.effectivemobile.ecommerceconcept.feature_home_page.presentation.impl.categories.CategoriesAdapter
+import ru.effectivemobile.ecommerceconcept.feature_home_page.presentation.impl.categories.Category
 import ru.effectivemobile.ecommerceconcept.feature_home_page.presentation.impl.di.HomePageComponentHolder
+import ru.effectivemobile.ecommerceconcept.feature_home_page.presentation.impl.filter.FilterDialog
+import ru.effectivemobile.ecommerceconcept.feature_home_page.presentation.impl.filter.FilterInteract
 import ru.effectivemobile.ecommerceconcept.feature_phones.api.PhoneFilterData
 import ru.effectivemobile.ecommerceconcept.navigation.navigate
 import ru.effectivemobile.ecommerceconcept.navigation.navigateWithInfo
@@ -27,6 +30,11 @@ internal class HomePageFragment : Fragment(R.layout.fragment_home_page), FilterI
         } else {
             navigate(R.id.action_to_notImplementedFragment, ru.effectivemobile.ecommerceconcept.navigation.R.id.host_main)
         }
+    }
+
+    private val viewModel by lazy {
+        ViewModelProvider(this)
+            .get(HomePageViewModel::class.java)
     }
 
     private fun initList(): List<Category> {
@@ -78,6 +86,17 @@ internal class HomePageFragment : Fragment(R.layout.fragment_home_page), FilterI
                 }
 
                 true
+            }
+
+            viewModel.cartCount.observe(viewLifecycleOwner) { count ->
+                bottomNavigation?.getOrCreateBadge(R.id.cart)?.let {
+                    it.backgroundColor = ContextCompat.getColor(
+                        requireContext(),
+                        ru.effectivemobile.ecommerceconcept.core_ui.R.color.orange_main
+                    )
+                    it.isVisible = count > 0
+                    it.number = count
+                }
             }
         }
     }

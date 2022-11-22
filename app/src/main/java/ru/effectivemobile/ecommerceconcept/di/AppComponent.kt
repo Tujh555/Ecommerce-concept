@@ -11,6 +11,7 @@ import ru.effectivemobile.ecommerceconcept.di.scopes.AppScope
 import ru.effectivemobile.ecommerceconcept.feature_cart_api.CartFeatureApi
 import ru.effectivemobile.ecommerceconcept.feature_cart_api.CartFeatureDependencies
 import ru.effectivemobile.ecommerceconcept.feature_cart_api.CartNavigationInfo
+import ru.effectivemobile.ecommerceconcept.feature_cart_api.ProductCartCountProvider
 import ru.effectivemobile.ecommerceconcept.feature_cart_impl.di.CartDependencyProvider
 import ru.effectivemobile.ecommerceconcept.feature_cart_impl.di.CartFeatureComponentHolder
 import ru.effectivemobile.ecommerceconcept.feature_home_page.presentation.api.HomePageFeatureDependencies
@@ -94,6 +95,8 @@ class AppModule {
                 get() = api.navigationInfo
             override val cartNavigationInfo: CartNavigationInfo
                 get() = cartFeatureApi.navigationInfo
+            override val countProvider: ProductCartCountProvider
+                get() = cartFeatureApi.countProvider
         }
     }
 

@@ -22,7 +22,6 @@ class MainActivity : AppCompatActivity(R.layout.activity_main) {
 
         HomePageComponentHolder.init(deps)
 
-        Log.d("MyLogs", "${ru.effectivemobile.ecommerceconcept.navigation.R.id.host_main}, ${ru.effectivemobile.ecommerceconcept.navigation.R.id.host_global}")
-        Log.d("MyLogs", "${ru.effectivemobile.ecommerceconcept.feature_cart.R.id.action_global_navigate_to_cartFragment}, ${ru.effectivemobile.ecommerceconcept.feature_phones.R.id.action_global_to_phonesFragment}")
+
     }
 }

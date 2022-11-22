@@ -3,6 +3,7 @@ package ru.effectivemobile.ecommerceconcept.feature_cart_impl.di
 import dagger.Component
 import ru.effectivemobile.ecommerceconcept.feature_cart_api.CartFeatureApi
 import ru.effectivemobile.ecommerceconcept.feature_cart_api.CartFeatureDependencies
+import ru.effectivemobile.ecommerceconcept.feature_cart_impl.di.modules.ApiModule
 import ru.effectivemobile.ecommerceconcept.feature_cart_impl.di.modules.RepositoryModule
 import ru.effectivemobile.ecommerceconcept.feature_cart_impl.di.modules.UseCasesModule
 import ru.effectivemobile.ecommerceconcept.feature_cart_impl.di.modules.ViewModelModule
@@ -13,7 +14,8 @@ import ru.effectivemobile.ecommerceconcept.feature_cart_impl.presentation.CartFr
     modules = [
         ViewModelModule::class,
         RepositoryModule::class,
-        UseCasesModule::class
+        UseCasesModule::class,
+        ApiModule::class
     ]
 )
 @CartScope
