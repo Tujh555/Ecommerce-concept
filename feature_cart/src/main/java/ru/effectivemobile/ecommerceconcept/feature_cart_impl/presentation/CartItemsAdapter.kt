@@ -1,6 +1,5 @@
 package ru.effectivemobile.ecommerceconcept.feature_cart_impl.presentation
 
-import android.util.Log
 import android.view.LayoutInflater
 import android.view.ViewGroup
 import androidx.recyclerview.widget.ListAdapter
@@ -35,7 +34,7 @@ internal class CartItemsAdapter @Inject constructor(
         fun bind(item: CartProduct) {
             binding.run {
                 tvProductName.text = item.title
-                tvPrice.text = root.context.getString(R.string.price_text, item.price)
+                tvPrice.text = root.context.getString(R.string.text_price, item.price)
                 tvCountInCart.text = item.countInCart.toString()
 
                 ivMinus.setOnClickListener {

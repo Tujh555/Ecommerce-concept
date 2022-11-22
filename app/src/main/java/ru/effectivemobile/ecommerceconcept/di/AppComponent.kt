@@ -14,6 +14,11 @@ import ru.effectivemobile.ecommerceconcept.feature_cart_api.CartNavigationInfo
 import ru.effectivemobile.ecommerceconcept.feature_cart_impl.di.CartDependencyProvider
 import ru.effectivemobile.ecommerceconcept.feature_cart_impl.di.CartFeatureComponentHolder
 import ru.effectivemobile.ecommerceconcept.feature_home_page.presentation.api.HomePageFeatureDependencies
+import ru.effectivemobile.ecommerceconcept.feature_phone_details.api.PhoneDetailDependencies
+import ru.effectivemobile.ecommerceconcept.feature_phone_details.api.PhoneDetailsApi
+import ru.effectivemobile.ecommerceconcept.feature_phone_details.api.PhoneDetailsNavigationInfo
+import ru.effectivemobile.ecommerceconcept.feature_phone_details.impl.di.FeaturePhoneDetailsDependenciesProvider
+import ru.effectivemobile.ecommerceconcept.feature_phone_details.impl.di.PhoneDetailsComponentHolder
 import ru.effectivemobile.ecommerceconcept.feature_phones.api.FeaturePhonesApi
 import ru.effectivemobile.ecommerceconcept.feature_phones.api.FeaturePhonesDependencies
 import ru.effectivemobile.ecommerceconcept.feature_phones.api.PhonesNavigationInfo
@@ -47,10 +52,12 @@ class AppModule {
 
     @AppScope
     @Provides
-    fun provideFeaturePhonesDependencies(service: StoreService): FeaturePhonesDependencies {
+    fun provideFeaturePhonesDependencies(service: StoreService, phoneDetailsApi: PhoneDetailsApi): FeaturePhonesDependencies {
         return object : FeaturePhonesDependencies {
             override val service: StoreService
                 get() = service
+            override val phoneDetailsNavigationInfo: PhoneDetailsNavigationInfo
+                get() = phoneDetailsApi.navigationInfo
         }
     }
 
@@ -59,6 +66,24 @@ class AppModule {
         FeaturePhonesComponentHolder.init(dependencies)
         PhonesDependencyProvider.dependencies = dependencies
         return FeaturePhonesComponentHolder.get()
+    }
+
+    @Provides
+    fun providePhoneDetailsApi(dependencies: PhoneDetailDependencies): PhoneDetailsApi {
+        PhoneDetailsComponentHolder.init(dependencies)
+        FeaturePhoneDetailsDependenciesProvider.dependencies = dependencies
+        return PhoneDetailsComponentHolder.get()
+    }
+
+    @Provides
+    fun providePhoneDetailsDependencies(service: StoreService, cartFeatureApi: CartFeatureApi): PhoneDetailDependencies {
+        return object : PhoneDetailDependencies {
+            override val storeService: StoreService
+                get() = service
+            override val cartNavigationInfo: CartNavigationInfo
+                get() = cartFeatureApi.navigationInfo
+
+        }
     }
 
     @Provides

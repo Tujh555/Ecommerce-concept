@@ -3,7 +3,7 @@
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
-    android:layout_height="wrap_content">
+    android:layout_height="match_parent">
 
     <ImageView
         android:id="@+id/iv_processor"
@@ -20,6 +20,8 @@
         style="@style/ProductHardwareItemsText"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
+        android:gravity="center"
+        android:textAlignment="gravity"
         android:layout_marginTop="5dp"
         app:layout_constraintEnd_toEndOf="@id/iv_processor"
         app:layout_constraintStart_toStartOf="@id/iv_processor"
@@ -47,9 +49,9 @@
 
     <ImageView
         android:id="@+id/iv_ram"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:src="@drawable/ic_rom"
+        android:layout_width="28dp"
+        android:layout_height="21dp"
+        android:src="@drawable/ic_ram"
         app:layout_constraintEnd_toStartOf="@id/iv_rom"
         app:layout_constraintStart_toEndOf="@id/iv_camera"
         app:layout_constraintTop_toTopOf="parent" />
@@ -157,7 +159,7 @@
                 android:height="26dp"
                 android:layout_height="wrap_content"
                 android:textAppearance="@style/TextAppearance.AppCompat.DefaultTextStyle"
-                tools:text="$1,500.0032432"
+                tools:text="$1,500.00"
                 android:textAlignment="gravity"
                 android:gravity="center|center_horizontal"
                 android:textSize="20sp"

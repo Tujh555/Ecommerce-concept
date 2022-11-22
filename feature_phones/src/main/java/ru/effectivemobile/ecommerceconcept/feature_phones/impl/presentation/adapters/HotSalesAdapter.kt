@@ -16,6 +16,8 @@ import javax.inject.Inject
 internal class HotSalesAdapter @Inject constructor(
     callback: HomeStoreProductDiffCallback
 ) : ListAdapter<HomeStoreProduct, HotSalesAdapter.HotSalesViewHolder>(callback) {
+    var phoneClickListener: OnPhoneClickListener? = null
+
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): HotSalesViewHolder {
         val inflater = LayoutInflater.from(parent.context)
 
@@ -28,7 +30,7 @@ internal class HotSalesAdapter @Inject constructor(
         holder.bind(getItem(position))
     }
 
-    class HotSalesViewHolder(
+    inner class HotSalesViewHolder(
         private val binding: HotSalesListItemBinding
     ) : RecyclerView.ViewHolder(binding.root) {
         fun bind(item: HomeStoreProduct) {
@@ -47,6 +49,8 @@ internal class HotSalesAdapter @Inject constructor(
 
                 tvTitle.text = item.title
                 tvSubtitle.text = item.subtitle
+
+                root.setOnClickListener { phoneClickListener?.click() }
 
                 Glide.with(root)
                     .load(item.pictureUrl)

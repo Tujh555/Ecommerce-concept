@@ -1,6 +1,7 @@
 <?xml version="1.0" encoding="utf-8"?>
-<CheckBox xmlns:android="http://schemas.android.com/apk/res/android"
-    xmlns:tools="http://schemas.android.com/tools"
+<CheckBox xmlns:tools="http://schemas.android.com/tools"
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    android:id="@+id/cb_color"
     android:layout_width="39.29dp"
     android:layout_height="39.29dp"
     android:layout_marginEnd="@dimen/selectable_components_bottom_margin"

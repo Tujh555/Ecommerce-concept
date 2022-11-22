@@ -11,15 +11,16 @@ import androidx.lifecycle.ViewModelProvider
 import androidx.lifecycle.lifecycleScope
 import by.kirich1409.viewbindingdelegate.viewBinding
 import kotlinx.coroutines.flow.collectLatest
+import ru.effectivemobile.core_network_impl.entities.Response
+import ru.effectivemobile.ecommerceconcept.feature_phone_details.api.PhoneDetailsNavigationInfo
 import ru.effectivemobile.ecommerceconcept.feature_phones.R
 import ru.effectivemobile.ecommerceconcept.feature_phones.api.PhoneFilterData
 import ru.effectivemobile.ecommerceconcept.feature_phones.databinding.FragmentPhonesBinding
 import ru.effectivemobile.ecommerceconcept.feature_phones.impl.di.FeaturePhonesComponentHolder
 import ru.effectivemobile.ecommerceconcept.feature_phones.impl.di.PhonesDependencyProvider
-import ru.effectivemobile.ecommerceconcept.feature_phones.impl.domain.entities.Response
 import ru.effectivemobile.ecommerceconcept.feature_phones.impl.presentation.adapters.BestSellerAdapter
 import ru.effectivemobile.ecommerceconcept.feature_phones.impl.presentation.adapters.HotSalesAdapter
-import ru.effectivemobile.ecommerceconcept.navigation.NavigationInfo
+import ru.effectivemobile.ecommerceconcept.feature_phones.impl.presentation.adapters.OnPhoneClickListener
 import ru.effectivemobile.ecommerceconcept.navigation.getNavigationData
 import ru.effectivemobile.ecommerceconcept.navigation.navigateWithInfo
 import java.net.ConnectException
@@ -38,6 +39,9 @@ internal class PhonesFragment : Fragment(R.layout.fragment_phones) {
     @Inject
     lateinit var bestSellerAdapter: BestSellerAdapter
 
+    @Inject
+    lateinit var phoneDetailsNavigationInfo: PhoneDetailsNavigationInfo
+
     private val viewModel by viewModels<PhonesViewModel> {
         viewModelFactory
     }
@@ -53,8 +57,6 @@ internal class PhonesFragment : Fragment(R.layout.fragment_phones) {
         super.onCreate(savedInstanceState)
 
         val filterData = getNavigationData<PhoneFilterData>()
-
-        Log.d("MyLogs", "Filter data $filterData")
 
         viewModel.startLoading(filterData)
     }
@@ -85,14 +87,14 @@ internal class PhonesFragment : Fragment(R.layout.fragment_phones) {
                     }
                     is Response.Success -> {
                         binding.progressBar.visibility = View.INVISIBLE
-                        if (it.answer.homePageProducts.isNotEmpty()) {
-                            hotSalesAdapter.submitList(it.answer.homePageProducts)
+                        if (it.data.homePageProducts.isNotEmpty()) {
+                            hotSalesAdapter.submitList(it.data.homePageProducts)
                         } else {
                             binding.tvHotSalesEmpty.visibility = View.VISIBLE
                         }
 
-                        if (it.answer.bestSellerProducts.isNotEmpty()) {
-                            bestSellerAdapter.submitList(it.answer.bestSellerProducts)
+                        if (it.data.bestSellerProducts.isNotEmpty()) {
+                            bestSellerAdapter.submitList(it.data.bestSellerProducts)
                         } else {
                             binding.tvBestSellerEmpty.visibility = View.VISIBLE
                         }
@@ -106,8 +108,16 @@ internal class PhonesFragment : Fragment(R.layout.fragment_phones) {
     private fun initView() {
         binding.run {
             vpHotSales.setPageTransformer(Transformer())
-            vpHotSales.adapter = hotSalesAdapter
+            vpHotSales.offscreenPageLimit = 3
+            hotSalesAdapter.phoneClickListener = OnPhoneClickListener {
+                navigateWithInfo(phoneDetailsNavigationInfo.toNavigationInfo())
+            }
 
+            bestSellerAdapter.phoneClickListener = OnPhoneClickListener {
+                navigateWithInfo(phoneDetailsNavigationInfo.toNavigationInfo())
+            }
+
+            vpHotSales.adapter = hotSalesAdapter
             rvBestSeller.adapter = bestSellerAdapter
         }
     }

@@ -1,7 +1,10 @@
 package ru.effectivemobile.ecommerceconcept.feature_home_page.presentation.impl
 
 import android.os.Bundle
+import android.util.Log
+import android.view.LayoutInflater
 import android.view.View
+import android.view.ViewGroup
 import androidx.fragment.app.Fragment
 import by.kirich1409.viewbindingdelegate.viewBinding
 import ru.effectivemobile.ecommerceconcept.feature_home_page.R
@@ -31,13 +34,11 @@ internal class HomePageFragment : Fragment(R.layout.fragment_home_page), FilterI
         val unselectedDrawable = resources.obtainTypedArray(R.array.categories_pictures_unselected)
 
         val res = strings.indices.map { index ->
-            val category = Category(
+            Category(
                 title = strings[index],
                 selectedDrawableId = selectedDrawable.getResourceId(index, 0),
                 unselectedDrawableId = unselectedDrawable.getResourceId(index, 0)
             )
-
-            category
         }
 
         selectedDrawable.recycle()
@@ -79,6 +80,11 @@ internal class HomePageFragment : Fragment(R.layout.fragment_home_page), FilterI
                 true
             }
         }
+    }
+
+    override fun onResume() {
+        super.onResume()
+        binding.bottomNavigation?.menu?.getItem(0)?.isChecked = true
     }
 
     override fun filter(filterData: PhoneFilterData) {

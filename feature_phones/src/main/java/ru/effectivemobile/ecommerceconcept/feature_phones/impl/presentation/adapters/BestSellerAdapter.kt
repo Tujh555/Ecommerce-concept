@@ -1,6 +1,5 @@
 package ru.effectivemobile.ecommerceconcept.feature_phones.impl.presentation.adapters
 
-import android.util.Log
 import android.view.LayoutInflater
 import android.view.ViewGroup
 import androidx.recyclerview.widget.ListAdapter
@@ -16,6 +15,7 @@ import javax.inject.Inject
 internal class BestSellerAdapter @Inject constructor(
     callback: BestSellerDiffCallback
 ) : ListAdapter<BestSellerProduct, BestSellerAdapter.BestSellerViewHolder>(callback) {
+    var phoneClickListener: OnPhoneClickListener? = null
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): BestSellerViewHolder {
         return BestSellerViewHolder(
@@ -32,7 +32,7 @@ internal class BestSellerAdapter @Inject constructor(
     }
 
 
-    class BestSellerViewHolder(
+    inner class BestSellerViewHolder(
         private val binding: BestSellerListItemBinding
     ) : RecyclerView.ViewHolder(binding.root) {
         fun bind(item: BestSellerProduct) {
@@ -58,6 +58,8 @@ internal class BestSellerAdapter @Inject constructor(
                     .load(item.pictureUrl)
                     .centerCrop()
                     .into(binding.ivImage)
+
+                root.setOnClickListener { phoneClickListener?.click() }
             }
         }
     }

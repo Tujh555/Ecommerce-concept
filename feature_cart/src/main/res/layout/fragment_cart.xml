@@ -193,7 +193,7 @@
 
         <androidx.appcompat.widget.AppCompatTextView
             android:id="@+id/tv_total"
-            style="@style/RegularText"
+            style="@style/TextAppearance.AppCompat.DefaultTextStyle"
             android:layout_width="75dp"
             android:layout_height="22dp"
             android:layout_marginStart="215dp"
@@ -209,7 +209,7 @@
 
         <androidx.appcompat.widget.AppCompatTextView
             android:id="@+id/tv_delivery"
-            style="@style/RegularText"
+            style="@style/TextAppearance.AppCompat.DefaultTextStyle"
             android:layout_width="75dp"
             android:layout_height="22dp"
             android:textColor="@color/white"

@@ -26,7 +26,7 @@ object CartFeatureComponentHolder : ComponentHolder<CartFeatureApi, CartFeatureD
 
     override fun get(): CartFeatureApi {
         return requireNotNull(component) {
-            "CartFeatureComponent was not initialized"
+            "CartFeatureApi was not initialized"
         }
     }
 

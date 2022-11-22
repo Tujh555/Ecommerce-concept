@@ -25,8 +25,11 @@
 
         <action
             android:id="@id/action_global_navigate_to_cartFragment"
-            app:destination="@id/cartFragment"
-            app:popUpTo="@id/homePageFragment"/>
+            app:destination="@id/cartFragment"/>
+
+        <action
+            android:id="@id/action_global_to_phoneDetailsFragment"
+            app:destination="@id/phoneDetailsFragment"/>
 
     </fragment>
 
@@ -35,4 +38,9 @@
         android:name="ru.effectivemobile.ecommerceconcept.feature_cart_impl.presentation.CartFragment"
         android:label="CartFragment">
     </fragment>
+
+    <fragment
+        android:id="@+id/phoneDetailsFragment"
+        android:name="ru.effectivemobile.ecommerceconcept.feature_phone_details.impl.presentation.PhoneDetailsFragment"
+        android:label="PhoneDetailsFragment"/>
 </navigation>

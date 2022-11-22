@@ -1,6 +1,7 @@
 package ru.effectivemobile.ecommerceconcept.feature_cart_impl.presentation
 
 import android.os.Bundle
+import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
@@ -13,10 +14,10 @@ import androidx.recyclerview.widget.SimpleItemAnimator
 import by.kirich1409.viewbindingdelegate.viewBinding
 import ru.effectivemobile.ecommerceconcept.feature_cart.R
 import ru.effectivemobile.ecommerceconcept.feature_cart.databinding.FragmentCartBinding
-import ru.effectivemobile.ecommerceconcept.feature_cart_impl.data.Response
+import ru.effectivemobile.core_network_impl.entities.Response
 import ru.effectivemobile.ecommerceconcept.feature_cart_impl.di.CartDependencyProvider
 import ru.effectivemobile.ecommerceconcept.feature_cart_impl.di.CartFeatureComponentHolder
-import ru.effectivemobile.ecommerceconcept.navigation.getNavigationData
+import java.util.*
 import javax.inject.Inject
 
 internal class CartFragment : Fragment(R.layout.fragment_cart) {
@@ -94,8 +95,13 @@ internal class CartFragment : Fragment(R.layout.fragment_cart) {
                         binding.clFailureLayout.visibility = View.GONE
                         binding.progressBar.visibility = View.INVISIBLE
 
+                        Log.d("MyLogs", "${it.data}")
+
                         binding.run {
-                            tvTotal.text = getString(R.string.price_text, it.data.total)
+                            tvTotal.text = getString(
+                                R.string.total_sum_text,
+                                String.format(Locale.US, "%,d", it.data.total.toInt())
+                            )
                             tvDelivery.text = it.data.delivery
                         }
                     }
