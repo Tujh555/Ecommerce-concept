@@ -6,6 +6,12 @@ import ru.effectivemobile.ecommerceconcept.feature_phones.api.PhonesNavigationIn
 import ru.effectivemobile.ecommerceconcept.module_injector.BaseDependencies
 import ru.effectivemobile.ecommerceconcept.navigation.NavigationInfo
 
+/**
+ * @property phonesNavigationInfo - navigation info for transition to Phones fragment
+ * @property cartNavigationInfo - navigation info for transition to Cart fragment
+ * @property countProvider
+ * @see ProductCartCountProvider
+ */
 interface HomePageFeatureDependencies : BaseDependencies {
     val phonesNavigationInfo: PhonesNavigationInfo
     val cartNavigationInfo: CartNavigationInfo

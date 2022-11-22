@@ -71,6 +71,7 @@ internal class HomePageFragment : Fragment(R.layout.fragment_home_page), FilterI
             adapter.submitList(initList())
 
             ivFilter.setOnClickListener {
+                // Start filtering
                 FilterDialog().show(childFragmentManager, "")
             }
 
@@ -110,6 +111,9 @@ internal class HomePageFragment : Fragment(R.layout.fragment_home_page), FilterI
         binding.bottomNavigation?.menu?.getItem(0)?.isChecked = true
     }
 
+    /**
+     * Method accepting the callback from the filtering fragment
+     */
     override fun filter(filterData: PhoneFilterData) {
         HomePageComponentHolder.phonesNavigationInfo?.let { info ->
             navigateWithInfo(info.toNavigationInfo(), filterData)

@@ -5,6 +5,9 @@ import ru.effectivemobile.ecommerceconcept.feature_phones.api.FeaturePhonesApi
 import ru.effectivemobile.ecommerceconcept.feature_phones.api.FeaturePhonesDependencies
 import ru.effectivemobile.ecommerceconcept.module_injector.ComponentHolder
 
+/**
+ * @see ComponentHolder
+ */
 object FeaturePhonesComponentHolder : ComponentHolder<FeaturePhonesApi, FeaturePhonesDependencies> {
     private var component: PhonesComponent? = null
 

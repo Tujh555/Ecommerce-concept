@@ -6,6 +6,9 @@ import ru.effectivemobile.ecommerceconcept.feature_cart_api.CartFeatureDependenc
 import ru.effectivemobile.ecommerceconcept.feature_cart_impl.TAG
 import ru.effectivemobile.ecommerceconcept.module_injector.ComponentHolder
 
+/**
+ * @see ComponentHolder
+ */
 object CartFeatureComponentHolder : ComponentHolder<CartFeatureApi, CartFeatureDependencies> {
     private var component: CartComponent? = null
     internal val featureComponent: CartComponent

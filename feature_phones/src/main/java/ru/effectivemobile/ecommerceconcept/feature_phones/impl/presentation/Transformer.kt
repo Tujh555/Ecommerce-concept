@@ -4,6 +4,9 @@ import android.view.View
 import androidx.viewpager2.widget.ViewPager2
 import kotlin.math.abs
 
+/**
+ * A class that provides a nice rendering of the transition between elements
+ */
 class Transformer : ViewPager2.PageTransformer {
     override fun transformPage(page: View, position: Float) {
         page.apply {

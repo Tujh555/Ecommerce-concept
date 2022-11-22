@@ -33,8 +33,6 @@ class MainActivity : AppCompatActivity(R.layout.activity_main) {
 
         val connectivityManager = getSystemService(ConnectivityManager::class.java)
 
-        Log.d("MyLogs", "activeNetwork ${connectivityManager.activeNetwork == null}")
-
         connectivityManager.registerDefaultNetworkCallback(object : ConnectivityManager.NetworkCallback() {
             override fun onLost(network : Network) {
                 showNotification()
@@ -42,6 +40,9 @@ class MainActivity : AppCompatActivity(R.layout.activity_main) {
         })
     }
 
+    /**
+     * Show notification about network interrupt
+     */
     private fun showNotification() {
         val notificationManager = getSystemService(Context.NOTIFICATION_SERVICE) as NotificationManager
 

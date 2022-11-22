@@ -4,6 +4,9 @@ import ru.effectivemobile.ecommerceconcept.feature_phone_details.api.PhoneDetail
 import ru.effectivemobile.ecommerceconcept.feature_phone_details.api.PhoneDetailsApi
 import ru.effectivemobile.ecommerceconcept.module_injector.ComponentHolder
 
+/**
+ * @see ComponentHolder
+ */
 object PhoneDetailsComponentHolder : ComponentHolder<PhoneDetailsApi, PhoneDetailDependencies> {
     private var component: PhoneDetailsComponent? = null
     internal val phoneComponent: PhoneDetailsComponent

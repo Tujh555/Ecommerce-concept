@@ -7,6 +7,9 @@ import ru.effectivemobile.ecommerceconcept.feature_phones.api.PhonesNavigationIn
 import ru.effectivemobile.ecommerceconcept.module_injector.BaseApi
 import ru.effectivemobile.ecommerceconcept.module_injector.ComponentHolder
 
+/**
+ * @see ComponentHolder
+ */
 object HomePageComponentHolder : ComponentHolder<BaseApi, HomePageFeatureDependencies> {
     internal var phonesNavigationInfo: PhonesNavigationInfo? = null
     internal var cartNavigationInfo: CartNavigationInfo? = null

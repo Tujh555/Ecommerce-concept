@@ -43,6 +43,10 @@ interface AppComponent {
 
 @Module
 class AppModule {
+
+    /**
+     * Provides the necessary dependencies for work Cart Feature
+     */
     @AppScope
     @Provides
     fun provideFeatureCartDependencies(service: StoreService): CartFeatureDependencies {
@@ -52,6 +56,9 @@ class AppModule {
         }
     }
 
+    /**
+     * Provides the necessary dependencies for work Phones Feature
+     */
     @AppScope
     @Provides
     fun provideFeaturePhonesDependencies(service: StoreService, phoneDetailsApi: PhoneDetailsApi): FeaturePhonesDependencies {
@@ -77,6 +84,9 @@ class AppModule {
         return PhoneDetailsComponentHolder.get()
     }
 
+    /**
+     * Provides the necessary dependencies for work Phone Details Feature
+     */
     @Provides
     fun providePhoneDetailsDependencies(service: StoreService, cartFeatureApi: CartFeatureApi): PhoneDetailDependencies {
         return object : PhoneDetailDependencies {
@@ -88,6 +98,9 @@ class AppModule {
         }
     }
 
+    /**
+     * Provides the necessary dependencies for work Home page Feature
+     */
     @Provides
     @AppScope
     fun provideFeatureHomePageDependencies(api: FeaturePhonesApi, cartFeatureApi: CartFeatureApi): HomePageFeatureDependencies {
@@ -108,6 +121,9 @@ class AppModule {
         return CartFeatureComponentHolder.get()
     }
 
+    /**
+     * Provides service for communication with the server
+     */
     @Provides
     @AppScope
     fun provideStoreService(): StoreService = NetworkApiProvider.get().service
