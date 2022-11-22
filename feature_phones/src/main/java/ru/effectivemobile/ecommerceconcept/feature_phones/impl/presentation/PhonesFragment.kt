@@ -99,6 +99,8 @@ internal class PhonesFragment : Fragment(R.layout.fragment_phones) {
                     }
                     is Response.Success -> {
                         binding.progressBar.visibility = View.INVISIBLE
+                        binding.tvBestSellerEmpty.visibility = View.INVISIBLE
+                        binding.tvHotSalesEmpty.visibility = View.INVISIBLE
                         if (it.data.homePageProducts.isNotEmpty()) {
                             hotSalesAdapter.submitList(it.data.homePageProducts)
                         } else {

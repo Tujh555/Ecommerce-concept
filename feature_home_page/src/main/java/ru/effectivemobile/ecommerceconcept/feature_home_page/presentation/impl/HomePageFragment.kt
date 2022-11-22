@@ -1,6 +1,9 @@
 package ru.effectivemobile.ecommerceconcept.feature_home_page.presentation.impl
 
+import android.net.ConnectivityManager
+import android.net.Network
 import android.os.Bundle
+import android.util.Log
 import android.view.View
 import androidx.core.content.ContextCompat
 import androidx.fragment.app.Fragment
@@ -59,6 +62,7 @@ internal class HomePageFragment : Fragment(R.layout.fragment_home_page), FilterI
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
+        observeConnectionState()
 
         adapter.onCategoryClickListener = categoryClickListener
 
@@ -110,5 +114,17 @@ internal class HomePageFragment : Fragment(R.layout.fragment_home_page), FilterI
         HomePageComponentHolder.phonesNavigationInfo?.let { info ->
             navigateWithInfo(info.toNavigationInfo(), filterData)
         }
+    }
+
+    private fun observeConnectionState() {
+        val connectivityManager = requireContext().getSystemService(ConnectivityManager::class.java)
+
+        connectivityManager.registerDefaultNetworkCallback(
+            object : ConnectivityManager.NetworkCallback() {
+                override fun onAvailable(network: Network) {
+                    viewModel.loadCartCount()
+                }
+            }
+        )
     }
 }

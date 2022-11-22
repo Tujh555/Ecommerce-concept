@@ -12,7 +12,7 @@ internal class HomePageViewModel : ViewModel() {
     val cartCount: LiveData<Int>
         get() = _cartCount
 
-    init {
+    fun loadCartCount() {
         HomePageComponentHolder.cartCountProvider?.let {
             viewModelScope.launch {
                 _cartCount.postValue(
