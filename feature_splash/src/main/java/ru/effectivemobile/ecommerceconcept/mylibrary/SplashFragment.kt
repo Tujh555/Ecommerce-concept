@@ -19,6 +19,7 @@ internal class SplashFragment : Fragment(R.layout.fragment_splash) {
     }
 
     private companion object {
+        // Default delay
         const val DELAY_MILLISECONDS = 2000L
     }
 }
